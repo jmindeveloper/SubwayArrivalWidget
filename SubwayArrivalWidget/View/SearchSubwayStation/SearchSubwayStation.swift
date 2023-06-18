@@ -13,16 +13,37 @@ struct SearchSubwayStation<ViewModel>: View where ViewModel: SearchSubwayStation
     @FocusState private var searchBarFocused: Bool
     
     var body: some View {
-        VStack {
-            TextField("검색", text: $viewModel.searchSubwayStationName)
-                .textFieldStyle(.roundedBorder)
-                .focused($searchBarFocused)
-                .padding()
-            
-            Spacer()
+        NavigationView {
+            VStack {
+                TextField("검색", text: $viewModel.searchSubwayStationName)
+                    .textFieldStyle(.roundedBorder)
+                    .focused($searchBarFocused)
+                    .padding()
+                
+                stationList()
+            }
+            .navigationTitle("역정보")
+//            .navigationBarTitleDisplayMode(.inline)
         }
-        .onTapGesture {
-            searchBarFocused = false
+    }
+    
+    @ViewBuilder
+    private func stationList() -> some View {
+        List {
+            if viewModel.searchSubwayStationName.isEmpty ||
+                viewModel.searchStationList.isEmpty {
+                ForEach(viewModel.allStationList, id: \.self) { station in
+                    NavigationLink(station.stationName) {
+                        Text(station.stationName)
+                    }
+                }
+            } else {
+                ForEach(viewModel.searchStationList, id: \.self) { station in
+                    NavigationLink(station.stationName) {
+                        Text(station.stationName)
+                    }
+                }
+            }
         }
     }
 }

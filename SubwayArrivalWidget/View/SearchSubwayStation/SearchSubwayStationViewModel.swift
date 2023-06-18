@@ -17,13 +17,7 @@ protocol SearchSubwayStationViewModelInterface: ObservableObject {
 class SearchSubwayStationViewModel: SearchSubwayStationViewModelInterface {
     @Published var searchSubwayStationName: String = ""
     @Published var allStationList: [Station] = []
-    @Published var searchStationList: [Station] = [] {
-        didSet {
-            searchStationList.forEach {
-                print($0.stationName)
-            }
-        }
-    }
+    @Published var searchStationList: [Station] = []
     
     private var subscriptions = Set<AnyCancellable>()
     
