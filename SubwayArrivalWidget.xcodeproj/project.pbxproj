@@ -26,7 +26,7 @@
 		0E98F8332A3EFCCF0081310B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		0E98F8352A3EFD280081310B /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		0E98F8372A3EFDE40081310B /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		0E98F8392A3F02990081310B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0E98F8392A3F02990081310B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E98F83A2A3F050C0081310B /* SubwayArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrival.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,15 +60,12 @@
 		0E98F8242A3EFCB50081310B /* SubwayArrivalWidget */ = {
 			isa = PBXGroup;
 			children = (
-				0E98F8392A3F02990081310B /* Info.plist */,
-				0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */,
-				0E98F8272A3EFCB50081310B /* ContentView.swift */,
-				0E98F8292A3EFCB60081310B /* Assets.xcassets */,
+				0E98F8402A3F149B0081310B /* Extension */,
+				0E98F83F2A3F14950081310B /* Model */,
+				0E98F83E2A3F14790081310B /* Application */,
+				0E98F83D2A3F14700081310B /* Manager */,
+				0E98F83C2A3F146D0081310B /* View */,
 				0E98F82B2A3EFCB60081310B /* Preview Content */,
-				0E98F8332A3EFCCF0081310B /* Network.swift */,
-				0E98F83A2A3F050C0081310B /* SubwayArrival.swift */,
-				0E98F8372A3EFDE40081310B /* String+.swift */,
-				0E98F8352A3EFD280081310B /* APIKey.swift */,
 			);
 			path = SubwayArrivalWidget;
 			sourceTree = "<group>";
@@ -79,6 +76,49 @@
 				0E98F82C2A3EFCB60081310B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0E98F83C2A3F146D0081310B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F8272A3EFCB50081310B /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0E98F83D2A3F14700081310B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F8332A3EFCCF0081310B /* Network.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		0E98F83E2A3F14790081310B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F8392A3F02990081310B /* Info.plist */,
+				0E98F8352A3EFD280081310B /* APIKey.swift */,
+				0E98F8292A3EFCB60081310B /* Assets.xcassets */,
+				0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		0E98F83F2A3F14950081310B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F83A2A3F050C0081310B /* SubwayArrival.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0E98F8402A3F149B0081310B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F8372A3EFDE40081310B /* String+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
