@@ -15,6 +15,10 @@
 		0E98F8362A3EFD280081310B /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8352A3EFD280081310B /* APIKey.swift */; };
 		0E98F8382A3EFDE40081310B /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8372A3EFDE40081310B /* String+.swift */; };
 		0E98F83B2A3F050C0081310B /* SubwayArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F83A2A3F050C0081310B /* SubwayArrival.swift */; };
+		0E98F8432A3F16DD0081310B /* SearchSubwayStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8422A3F16DD0081310B /* SearchSubwayStation.swift */; };
+		0E98F8452A3F19EC0081310B /* SearchSubwayStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8442A3F19EC0081310B /* SearchSubwayStationViewModel.swift */; };
+		0E98F8472A3F20AD0081310B /* subway_station.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E98F8462A3F20AD0081310B /* subway_station.json */; };
+		0E98F8492A3F23340081310B /* SubwayStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8482A3F23340081310B /* SubwayStation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +30,12 @@
 		0E98F8332A3EFCCF0081310B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		0E98F8352A3EFD280081310B /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		0E98F8372A3EFDE40081310B /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		0E98F8392A3F02990081310B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0E98F8392A3F02990081310B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E98F83A2A3F050C0081310B /* SubwayArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrival.swift; sourceTree = "<group>"; };
+		0E98F8422A3F16DD0081310B /* SearchSubwayStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubwayStation.swift; sourceTree = "<group>"; };
+		0E98F8442A3F19EC0081310B /* SearchSubwayStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubwayStationViewModel.swift; sourceTree = "<group>"; };
+		0E98F8462A3F20AD0081310B /* subway_station.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = subway_station.json; sourceTree = "<group>"; };
+		0E98F8482A3F23340081310B /* SubwayStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +69,12 @@
 			isa = PBXGroup;
 			children = (
 				0E98F8392A3F02990081310B /* Info.plist */,
-				0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */,
-				0E98F8272A3EFCB50081310B /* ContentView.swift */,
-				0E98F8292A3EFCB60081310B /* Assets.xcassets */,
+				0E98F8402A3F149B0081310B /* Extension */,
+				0E98F83F2A3F14950081310B /* Model */,
+				0E98F83E2A3F14790081310B /* Application */,
+				0E98F83D2A3F14700081310B /* Manager */,
+				0E98F83C2A3F146D0081310B /* View */,
 				0E98F82B2A3EFCB60081310B /* Preview Content */,
-				0E98F8332A3EFCCF0081310B /* Network.swift */,
-				0E98F83A2A3F050C0081310B /* SubwayArrival.swift */,
-				0E98F8372A3EFDE40081310B /* String+.swift */,
-				0E98F8352A3EFD280081310B /* APIKey.swift */,
 			);
 			path = SubwayArrivalWidget;
 			sourceTree = "<group>";
@@ -79,6 +85,60 @@
 				0E98F82C2A3EFCB60081310B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0E98F83C2A3F146D0081310B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F8412A3F16CE0081310B /* SearchSubwayStation */,
+				0E98F8272A3EFCB50081310B /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0E98F83D2A3F14700081310B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F8332A3EFCCF0081310B /* Network.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		0E98F83E2A3F14790081310B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F8462A3F20AD0081310B /* subway_station.json */,
+				0E98F8352A3EFD280081310B /* APIKey.swift */,
+				0E98F8292A3EFCB60081310B /* Assets.xcassets */,
+				0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		0E98F83F2A3F14950081310B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F83A2A3F050C0081310B /* SubwayArrival.swift */,
+				0E98F8482A3F23340081310B /* SubwayStation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0E98F8402A3F149B0081310B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F8372A3EFDE40081310B /* String+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		0E98F8412A3F16CE0081310B /* SearchSubwayStation */ = {
+			isa = PBXGroup;
+			children = (
+				0E98F8422A3F16DD0081310B /* SearchSubwayStation.swift */,
+				0E98F8442A3F19EC0081310B /* SearchSubwayStationViewModel.swift */,
+			);
+			path = SearchSubwayStation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E98F82D2A3EFCB60081310B /* Preview Assets.xcassets in Resources */,
+				0E98F8472A3F20AD0081310B /* subway_station.json in Resources */,
 				0E98F82A2A3EFCB60081310B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,8 +214,11 @@
 			files = (
 				0E98F8282A3EFCB50081310B /* ContentView.swift in Sources */,
 				0E98F8262A3EFCB50081310B /* SubwayArrivalWidgetApp.swift in Sources */,
+				0E98F8432A3F16DD0081310B /* SearchSubwayStation.swift in Sources */,
 				0E98F83B2A3F050C0081310B /* SubwayArrival.swift in Sources */,
+				0E98F8452A3F19EC0081310B /* SearchSubwayStationViewModel.swift in Sources */,
 				0E98F8382A3EFDE40081310B /* String+.swift in Sources */,
+				0E98F8492A3F23340081310B /* SubwayStation.swift in Sources */,
 				0E98F8362A3EFD280081310B /* APIKey.swift in Sources */,
 				0E98F8342A3EFCCF0081310B /* Network.swift in Sources */,
 			);
@@ -299,6 +363,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -329,6 +394,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
