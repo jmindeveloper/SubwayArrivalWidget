@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0439132A49ADAA00EA1516 /* SubwayArrivalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */; };
+		0E0439152A49AF0C00EA1516 /* SubwayStationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439142A49AF0C00EA1516 /* SubwayStationInfoView.swift */; };
+		0E0439172A49B60400EA1516 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439162A49B60400EA1516 /* Color+.swift */; };
 		0E98F8262A3EFCB50081310B /* SubwayArrivalWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */; };
 		0E98F8282A3EFCB50081310B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8272A3EFCB50081310B /* ContentView.swift */; };
 		0E98F82A2A3EFCB60081310B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E98F8292A3EFCB60081310B /* Assets.xcassets */; };
@@ -22,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalView.swift; sourceTree = "<group>"; };
+		0E0439142A49AF0C00EA1516 /* SubwayStationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationInfoView.swift; sourceTree = "<group>"; };
+		0E0439162A49B60400EA1516 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		0E98F8222A3EFCB50081310B /* SubwayArrivalWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwayArrivalWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalWidgetApp.swift; sourceTree = "<group>"; };
 		0E98F8272A3EFCB50081310B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E0439112A49AD9800EA1516 /* SubwayArrivalView */ = {
+			isa = PBXGroup;
+			children = (
+				0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */,
+			);
+			path = SubwayArrivalView;
+			sourceTree = "<group>";
+		};
 		0E98F8192A3EFCB50081310B = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +104,7 @@
 		0E98F83C2A3F146D0081310B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0E0439112A49AD9800EA1516 /* SubwayArrivalView */,
 				0E98F8412A3F16CE0081310B /* SearchSubwayStation */,
 				0E98F8272A3EFCB50081310B /* ContentView.swift */,
 			);
@@ -128,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				0E98F8372A3EFDE40081310B /* String+.swift */,
+				0E0439162A49B60400EA1516 /* Color+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -137,6 +153,7 @@
 			children = (
 				0E98F8422A3F16DD0081310B /* SearchSubwayStation.swift */,
 				0E98F8442A3F19EC0081310B /* SearchSubwayStationViewModel.swift */,
+				0E0439142A49AF0C00EA1516 /* SubwayStationInfoView.swift */,
 			);
 			path = SearchSubwayStation;
 			sourceTree = "<group>";
@@ -213,12 +230,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E98F8282A3EFCB50081310B /* ContentView.swift in Sources */,
+				0E0439172A49B60400EA1516 /* Color+.swift in Sources */,
 				0E98F8262A3EFCB50081310B /* SubwayArrivalWidgetApp.swift in Sources */,
 				0E98F8432A3F16DD0081310B /* SearchSubwayStation.swift in Sources */,
+				0E0439152A49AF0C00EA1516 /* SubwayStationInfoView.swift in Sources */,
 				0E98F83B2A3F050C0081310B /* SubwayArrival.swift in Sources */,
 				0E98F8452A3F19EC0081310B /* SearchSubwayStationViewModel.swift in Sources */,
 				0E98F8382A3EFDE40081310B /* String+.swift in Sources */,
 				0E98F8492A3F23340081310B /* SubwayStation.swift in Sources */,
+				0E0439132A49ADAA00EA1516 /* SubwayArrivalView.swift in Sources */,
 				0E98F8362A3EFD280081310B /* APIKey.swift in Sources */,
 				0E98F8342A3EFCCF0081310B /* Network.swift in Sources */,
 			);

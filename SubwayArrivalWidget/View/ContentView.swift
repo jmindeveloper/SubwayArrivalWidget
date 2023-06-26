@@ -24,7 +24,7 @@ struct ContentView: View {
     }
 }
 
-@available(iOS 17, *)
-#Preview {
-    ContentView()
-}
+//@available(iOS 17, *)
+//#Preview {
+//    ContentView()
+//}
