@@ -26,23 +26,53 @@ struct SearchSubwayStation<ViewModel>: View where ViewModel: SearchSubwayStation
         }
     }
     
-    @ViewBuilder 
+    @ViewBuilder
     private func stationList() -> some View {
         List {
             if viewModel.searchSubwayStationName.isEmpty ||
                 viewModel.searchStationList.isEmpty {
-                ForEach(viewModel.allStationList, id: \.self) { station in
-                    NavigationLink(
-                        destination: SubwayArrivalView(subwayName: station.stationName)) {
-                            SubwayStationInfoView(subwayName: station.stationName, lineNumber: station.lineNum)
+                ForEach(viewModel.lineNumbers, id: \.self) { lineNum in
+                    Section {
+                        ForEach(viewModel.allStationList[lineNum] ?? [], id: \.self) { station in
+                            ZStack {
+                                NavigationLink(
+                                    destination: SubwayArrivalView(subwayName: station.stationName)) {
+                                        EmptyView()
+                                    }
+                                    .opacity(0)
+                                    .buttonStyle(.plain)
+                                
+                                HStack {
+                                    SubwayStationInfoView(subwayName: station.stationName, lineNumber: station.lineNum)
+                                    Spacer()
+                                }
+                            }
                         }
+                    } header: {
+                        Text(lineNum)
+                    }
                 }
             } else {
-                ForEach(viewModel.searchStationList, id: \.self) { station in
-                    NavigationLink(
-                        destination: SubwayArrivalView(subwayName: station.stationName)) {
-                            SubwayStationInfoView(subwayName: station.stationName, lineNumber: station.lineNum)
+                ForEach(viewModel.lineNumbers, id: \.self) { lineNum in
+                    Section {
+                        ForEach(viewModel.searchStationList[lineNum] ?? [], id: \.self) { station in
+                            ZStack {
+                                NavigationLink(
+                                    destination: SubwayArrivalView(subwayName: station.stationName)) {
+                                        EmptyView()
+                                    }
+                                    .opacity(0)
+                                    .buttonStyle(.plain)
+                                
+                                HStack {
+                                    SubwayStationInfoView(subwayName: station.stationName, lineNumber: station.lineNum)
+                                    Spacer()
+                                }
+                            }
                         }
+                    } header: {
+                        Text(lineNum)
+                    }
                 }
             }
         }

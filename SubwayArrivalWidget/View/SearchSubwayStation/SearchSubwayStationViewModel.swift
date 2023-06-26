@@ -10,14 +10,17 @@ import Combine
 
 protocol SearchSubwayStationViewModelInterface: ObservableObject {
     var searchSubwayStationName: String { get set }
-    var allStationList: [Station] { get set }
-    var searchStationList: [Station] { get set }
+    var allStationList: [String: [Station]] { get set }
+    var searchStationList: [String: [Station]] { get set }
+    var lineNumbers: [String] { get set }
 }
 
 class SearchSubwayStationViewModel: SearchSubwayStationViewModelInterface {
     @Published var searchSubwayStationName: String = ""
-    @Published var allStationList: [Station] = []
-    @Published var searchStationList: [Station] = []
+    private var allStation: [Station] = []
+    @Published var allStationList: [String: [Station]] = [:]
+    @Published var searchStationList: [String: [Station]] = [:]
+    @Published var lineNumbers: [String] = []
     
     private var subscriptions = Set<AnyCancellable>()
     
@@ -31,10 +34,14 @@ class SearchSubwayStationViewModel: SearchSubwayStationViewModelInterface {
             .debounce(for: 1.5, scheduler: DispatchQueue.main)
             .sink { [weak self] text in
                 guard let self = self else { return }
-                let filterStation = self.allStationList.filter { station in
+                let filterStation = self.allStation.filter { station in
                     station.stationName.contains(text)
                 }
-                self.searchStationList = filterStation
+                if !filterStation.isEmpty {
+                    self.searchStationList = splitToLineNum(stations: filterStation)
+                } else {
+                    self.lineNumbers = self.allStationList.keys.sorted()
+                }
             }.store(in: &subscriptions)
     }
     
@@ -47,9 +54,26 @@ class SearchSubwayStationViewModel: SearchSubwayStationViewModelInterface {
             let data = try Data(contentsOf: dataURL)
             let subwayStation = try decoder.decode(SubwayStation.self, from: data)
             
-            allStationList = subwayStation.stationList
+            allStation = subwayStation.stationList
+            allStationList = splitToLineNum(stations: allStation)
+            print(allStationList)
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func splitToLineNum(stations: [Station]) -> [String: [Station]] {
+        var dic: [String: [Station]] = [:]
+        for station in stations {
+            let lineNum = station.lineNum.str
+            if var stations = dic[lineNum] {
+                stations.append(station)
+                dic[lineNum] = stations
+            } else {
+                dic[lineNum] = [station]
+            }
+        }
+        lineNumbers = dic.keys.sorted()
+        return dic
     }
 }

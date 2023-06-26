@@ -19,18 +19,12 @@ struct SubwayStation: Codable {
 struct Station: Codable, Hashable {
     /// 호선
     let lineNum: LineNum
-    /// 전철역 코드
-    let stationCode: String
     /// 전철역 이름
     let stationName: String
-    /// 외부코드
-    let frCode: String
 
     enum CodingKeys: String, CodingKey {
         case lineNum = "line_num"
-        case stationCode = "station_cd"
         case stationName = "station_nm"
-        case frCode = "fr_code"
     }
 }
 

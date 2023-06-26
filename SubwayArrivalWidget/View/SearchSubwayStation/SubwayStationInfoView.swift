@@ -19,5 +19,6 @@ struct SubwayStationInfoView: View {
                 .font(.system(size: 13))
                 .foregroundColor(lineNumber.lineColor)
         }
+        .padding(.vertical, 1)
     }
 }
