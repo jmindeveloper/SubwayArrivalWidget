@@ -34,13 +34,13 @@ struct SearchSubwayStation<ViewModel>: View where ViewModel: SearchSubwayStation
                 viewModel.searchStationList.isEmpty {
                 ForEach(viewModel.allStationList, id: \.self) { station in
                     NavigationLink(station.stationName) {
-                        Text(station.stationName)
+                        SubwayArrivalView(subwayName: station.stationName)
                     }
                 }
             } else {
                 ForEach(viewModel.searchStationList, id: \.self) { station in
                     NavigationLink(station.stationName) {
-                        Text(station.stationName)
+                        SubwayArrivalView(subwayName: station.stationName)
                     }
                 }
             }
@@ -48,7 +48,7 @@ struct SearchSubwayStation<ViewModel>: View where ViewModel: SearchSubwayStation
     }
 }
 
-@available(iOS 17, *)
-#Preview {
-    SearchSubwayStation(viewModel: SearchSubwayStationViewModel())
-}
+//@available(iOS 17, *)
+//#Preview {
+//    SearchSubwayStation(viewModel: SearchSubwayStationViewModel())
+//}
