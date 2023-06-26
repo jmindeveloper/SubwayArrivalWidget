@@ -23,25 +23,26 @@ struct SearchSubwayStation<ViewModel>: View where ViewModel: SearchSubwayStation
                 stationList()
             }
             .navigationTitle("역정보")
-//            .navigationBarTitleDisplayMode(.inline)
         }
     }
     
-    @ViewBuilder
+    @ViewBuilder 
     private func stationList() -> some View {
         List {
             if viewModel.searchSubwayStationName.isEmpty ||
                 viewModel.searchStationList.isEmpty {
                 ForEach(viewModel.allStationList, id: \.self) { station in
-                    NavigationLink(station.stationName) {
-                        SubwayArrivalView(subwayName: station.stationName)
-                    }
+                    NavigationLink(
+                        destination: SubwayArrivalView(subwayName: station.stationName)) {
+                            SubwayStationInfoView(subwayName: station.stationName, lineNumber: station.lineNum)
+                        }
                 }
             } else {
                 ForEach(viewModel.searchStationList, id: \.self) { station in
-                    NavigationLink(station.stationName) {
-                        SubwayArrivalView(subwayName: station.stationName)
-                    }
+                    NavigationLink(
+                        destination: SubwayArrivalView(subwayName: station.stationName)) {
+                            SubwayStationInfoView(subwayName: station.stationName, lineNumber: station.lineNum)
+                        }
                 }
             }
         }
