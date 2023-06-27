@@ -14,7 +14,18 @@ struct SubwayArrivalView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text(station.stationName)
+                VStack {
+                    HStack(alignment: .bottom) {
+                        Text(station.stationName)
+                            .font(.title)
+                        Text(station.lineNum.str)
+                            .foregroundColor(station.lineNum.lineColor)
+                    }
+                    
+                    HStack {
+                        stationInfoCapsuleView()
+                    }
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -24,6 +35,32 @@ struct SubwayArrivalView: View {
                         Image(systemName: "xmark")
                     }
                 }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func stationInfoCapsuleView() -> some View {
+        ZStack {
+            Capsule()
+                .fill(station.lineNum.lineColor ?? .white)
+                .frame(width: 120, height: 50)
+            Capsule()
+                .fill(.white)
+                .frame(width: 110, height: 40)
+            HStack {
+                Text(String(station.lineNum.str.first ?? " "))
+                    .foregroundColor(.white)
+                    .background {
+                        Circle()
+                            .fill(station.lineNum.lineColor ?? .black)
+                            .frame(width: 21, height: 21)
+                    }
+                
+                Text(station.stationName)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.black)
+                    .padding(.leading, 3)
             }
         }
     }
