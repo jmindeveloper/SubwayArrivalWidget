@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct SubwayArrivalView: View {
-    @State var subwayName: String
+    @State var station: Station
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack {
-            Text("아메리카노")
+        NavigationView {
+            VStack {
+                Text(station.stationName)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                }
+            }
         }
-        .navigationTitle(Text(subwayName))
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
