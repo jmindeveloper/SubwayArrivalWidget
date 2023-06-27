@@ -16,7 +16,8 @@ struct SubwayStation: Codable {
 }
 
 // MARK: - Datum
-struct Station: Codable, Hashable {
+struct Station: Codable, Hashable, Identifiable {
+    let id: UUID = UUID()
     /// 호선
     let lineNum: LineNum
     /// 전철역 이름
