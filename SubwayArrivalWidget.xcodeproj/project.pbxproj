@@ -22,6 +22,7 @@
 		0E98F8452A3F19EC0081310B /* SearchSubwayStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8442A3F19EC0081310B /* SearchSubwayStationViewModel.swift */; };
 		0E98F8472A3F20AD0081310B /* subway_station.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E98F8462A3F20AD0081310B /* subway_station.json */; };
 		0E98F8492A3F23340081310B /* SubwayStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8482A3F23340081310B /* SubwayStation.swift */; };
+		0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		0E98F8442A3F19EC0081310B /* SearchSubwayStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubwayStationViewModel.swift; sourceTree = "<group>"; };
 		0E98F8462A3F20AD0081310B /* subway_station.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = subway_station.json; sourceTree = "<group>"; };
 		0E98F8482A3F23340081310B /* SubwayStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStation.swift; sourceTree = "<group>"; };
+		0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */,
+				0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */,
 			);
 			path = SubwayArrivalView;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				0E98F83B2A3F050C0081310B /* SubwayArrival.swift in Sources */,
 				0E98F8452A3F19EC0081310B /* SearchSubwayStationViewModel.swift in Sources */,
 				0E98F8382A3EFDE40081310B /* String+.swift in Sources */,
+				0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */,
 				0E98F8492A3F23340081310B /* SubwayStation.swift in Sources */,
 				0E0439132A49ADAA00EA1516 /* SubwayArrivalView.swift in Sources */,
 				0E98F8362A3EFD280081310B /* APIKey.swift in Sources */,

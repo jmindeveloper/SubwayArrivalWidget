@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct SubwayArrivalView: View {
+struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewModelInterface {
     @State var station: Station
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         NavigationView {
@@ -36,6 +37,9 @@ struct SubwayArrivalView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            viewModel.getSubwayArrivalData(station.stationName)
         }
     }
     

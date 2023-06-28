@@ -46,7 +46,7 @@ struct SearchSubwayStation<ViewModel>: View where ViewModel: SearchSubwayStation
                     }
                 }
                 .fullScreenCover(item: $selectedStation) { station in
-                    SubwayArrivalView(station: station)
+                    SubwayArrivalView(station: station, viewModel: SubwayArrivalViewModel())
                 }
             } else {
                 ForEach(viewModel.lineNumbers, id: \.self) { lineNum in
@@ -63,7 +63,7 @@ struct SearchSubwayStation<ViewModel>: View where ViewModel: SearchSubwayStation
                     }
                 }
                 .fullScreenCover(item: $selectedStation) { station in
-                    SubwayArrivalView(station: station)
+                    SubwayArrivalView(station: station, viewModel: SubwayArrivalViewModel())
                 }
             }
         }
