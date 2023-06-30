@@ -15,11 +15,24 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
     var body: some View {
         NavigationView {
             VStack {
+                stationInfoCapsuleView()
+                
                 VStack {
-                    
                     HStack {
-                        stationInfoCapsuleView()
+                        Divider()
+                        
+                        Button {
+                            // TODO: - 즐겨찾기 버튼
+                        } label: {
+                            Image(systemName: "star")
+                                .resizable()
+                                .foregroundColor(.yellow)
+                                .frame(width: 45, height: 45)
+                        }
+                        
+                        Divider()
                     }
+                    .frame(height: 45)
                     
                     RealTimeArrivalInfoToggle(lineColor: station.lineNum.lineColor ?? .black)
                         .frame(width: 80, height: 30)
