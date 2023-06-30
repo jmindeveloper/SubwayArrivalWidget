@@ -16,12 +16,6 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
         NavigationView {
             VStack {
                 VStack {
-                    HStack(alignment: .bottom) {
-                        Text(station.stationName)
-                            .font(.title)
-                        Text(station.lineNum.str)
-                            .foregroundColor(station.lineNum.lineColor)
-                    }
                     
                     HStack {
                         stationInfoCapsuleView()
@@ -37,6 +31,17 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "xmark")
+                            .foregroundColor(station.lineNum.lineColor ?? Color(uiColor: .label))
+                    }
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack(alignment: .bottom, spacing: 2) {
+                        Text(station.stationName)
+                            .font(.title)
+                        Text(station.lineNum.str)
+                            .foregroundColor(station.lineNum.lineColor)
                     }
                 }
             }
