@@ -12,31 +12,71 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel
     
+    @State private var isSave: Bool = false
+    
     var body: some View {
         NavigationView {
             VStack {
+                Spacer()
+                    .frame(height: 40)
+                
                 stationInfoCapsuleView()
                 
-                VStack {
-                    HStack {
-                        Divider()
-                        
-                        Button {
-                            // TODO: - 즐겨찾기 버튼
-                        } label: {
-                            Image(systemName: "star")
-                                .resizable()
-                                .foregroundColor(.yellow)
-                                .frame(width: 45, height: 45)
-                        }
-                        
-                        Divider()
-                    }
-                    .frame(height: 45)
+                Divider()
+                    .frame(width: UIScreen.main.bounds.width * 0.93)
+                    .padding(.bottom, 10)
+                
+                HStack(alignment: .center) {
                     
-                    RealTimeArrivalInfoToggle(lineColor: station.lineNum.lineColor ?? .black)
-                        .frame(width: 80, height: 30)
+                    Divider()
+                        .frame(width: 1)
+                    
+                    BottomLabelImageButton() {
+                        print("전화")
+                    }
+                    .image("phone.fill")
+                    .text("전화")
+                    .imageColor(Color(uiColor: .darkGray))
+                    .textColor(Color(uiColor: .darkGray))
+                    .frame(width: 50, height: 50)
+                    
+                    Divider()
+                        .frame(width: 1)
+                    
+                    BottomLabelImageButton() {
+                        isSave.toggle()
+                    }
+                    .image("star.fill")
+                    .text("저장")
+                    .imageColor(isSave ? Color.yellow : Color(uiColor: .darkGray))
+                    .textColor(Color(uiColor: .darkGray))
+                    .frame(width: 50, height: 50)
+                    
+                    Divider()
+                        .frame(width: 1)
+                    
+                    BottomLabelImageButton() {
+                        print("공유")
+                    }
+                    .image("square.and.arrow.up.fill")
+                    .text("공유")
+                    .imageColor(Color(uiColor: .darkGray))
+                    .textColor(Color(uiColor: .darkGray))
+                    .frame(width: 50, height: 50)
+                    
+                    Divider()
+                        .frame(width: 1)
                 }
+                .frame(height: 60)
+                
+                Rectangle()
+                    .fill(Color(uiColor: .systemGray6))
+                    .frame(width: UIScreen.main.bounds.width, height: 14)
+                
+                RealTimeArrivalInfoToggle(lineColor: station.lineNum.lineColor ?? .black)
+                    .frame(width: 80, height: 30)
+                
+                Spacer()
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -88,5 +128,11 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                     .padding(.leading, 3)
             }
         }
+    }
+}
+
+struct BottomLabelImageButton_Previews: PreviewProvider {
+    static var previews: some View {
+        SubwayArrivalView(station: Station(lineNum: LineNum.lineSecond, stationName: "강남"), viewModel: SubwayArrivalViewModel())
     }
 }
