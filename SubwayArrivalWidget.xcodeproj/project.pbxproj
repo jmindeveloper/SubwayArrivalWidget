@@ -23,6 +23,7 @@
 		0E98F8472A3F20AD0081310B /* subway_station.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E98F8462A3F20AD0081310B /* subway_station.json */; };
 		0E98F8492A3F23340081310B /* SubwayStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8482A3F23340081310B /* SubwayStation.swift */; };
 		0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */; };
+		0EA7A09C2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA7A09B2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		0E98F8462A3F20AD0081310B /* subway_station.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = subway_station.json; sourceTree = "<group>"; };
 		0E98F8482A3F23340081310B /* SubwayStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStation.swift; sourceTree = "<group>"; };
 		0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalViewModel.swift; sourceTree = "<group>"; };
+		0EA7A09B2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeArrivalInfoToggle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		0E0439112A49AD9800EA1516 /* SubwayArrivalView */ = {
 			isa = PBXGroup;
 			children = (
+				0EA7A09A2A4EECDD00AC9D25 /* RealTimeArrivalInfoToggle */,
 				0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */,
 				0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */,
 			);
@@ -161,6 +164,14 @@
 			path = SearchSubwayStation;
 			sourceTree = "<group>";
 		};
+		0EA7A09A2A4EECDD00AC9D25 /* RealTimeArrivalInfoToggle */ = {
+			isa = PBXGroup;
+			children = (
+				0EA7A09B2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift */,
+			);
+			path = RealTimeArrivalInfoToggle;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,6 +249,7 @@
 				0E98F8432A3F16DD0081310B /* SearchSubwayStation.swift in Sources */,
 				0E0439152A49AF0C00EA1516 /* SubwayStationInfoView.swift in Sources */,
 				0E98F83B2A3F050C0081310B /* SubwayArrival.swift in Sources */,
+				0EA7A09C2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift in Sources */,
 				0E98F8452A3F19EC0081310B /* SearchSubwayStationViewModel.swift in Sources */,
 				0E98F8382A3EFDE40081310B /* String+.swift in Sources */,
 				0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */,

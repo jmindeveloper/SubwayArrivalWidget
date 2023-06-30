@@ -26,6 +26,9 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                     HStack {
                         stationInfoCapsuleView()
                     }
+                    
+                    RealTimeArrivalInfoToggle(lineColor: station.lineNum.lineColor ?? .black)
+                        .frame(width: 80, height: 30)
                 }
             }
             .toolbar {
