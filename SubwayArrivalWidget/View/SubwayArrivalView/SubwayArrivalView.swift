@@ -26,55 +26,36 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                     .frame(width: UIScreen.main.bounds.width * 0.93)
                     .padding(.bottom, 10)
                 
-                HStack(alignment: .center) {
-                    
-                    Divider()
-                        .frame(width: 1)
-                    
-                    BottomLabelImageButton() {
-                        print("전화")
-                    }
-                    .image("phone.fill")
-                    .text("전화")
-                    .imageColor(Color(uiColor: .darkGray))
-                    .textColor(Color(uiColor: .darkGray))
-                    .frame(width: 50, height: 50)
-                    
-                    Divider()
-                        .frame(width: 1)
-                    
-                    BottomLabelImageButton() {
-                        isSave.toggle()
-                    }
-                    .image("star.fill")
-                    .text("저장")
-                    .imageColor(isSave ? Color.yellow : Color(uiColor: .darkGray))
-                    .textColor(Color(uiColor: .darkGray))
-                    .frame(width: 50, height: 50)
-                    
-                    Divider()
-                        .frame(width: 1)
-                    
-                    BottomLabelImageButton() {
-                        print("공유")
-                    }
-                    .image("square.and.arrow.up.fill")
-                    .text("공유")
-                    .imageColor(Color(uiColor: .darkGray))
-                    .textColor(Color(uiColor: .darkGray))
-                    .frame(width: 50, height: 50)
-                    
-                    Divider()
-                        .frame(width: 1)
-                }
-                .frame(height: 60)
+                menu()
+                    .frame(height: 60)
                 
                 Rectangle()
                     .fill(Color(uiColor: .systemGray6))
                     .frame(width: UIScreen.main.bounds.width, height: 14)
                 
-                RealTimeArrivalInfoToggle(lineColor: station.lineNum.lineColor ?? .black)
-                    .frame(width: 80, height: 30)
+                HStack(alignment: .bottom) {
+                    RealTimeArrivalInfoToggle(lineColor: station.lineNum.lineColor ?? .black)
+                        .frame(width: 80, height: 30)
+                        .padding(.leading, 16)
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Text("00:00")
+                            .foregroundColor(Color(uiColor: .systemGray))
+                        
+                        Button {
+                            print("reload")
+                        } label: {
+                            Image(systemName: "arrow.clockwise")
+                                .foregroundColor(station.lineNum.lineColor ?? .black)
+                                .frame(width: 15, height: 15)
+                        }
+                    }
+                    .padding(.trailing, 16)
+                    
+                }
+                .padding(.top, 16)
                 
                 Spacer()
             }
@@ -127,6 +108,51 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                     .foregroundColor(.black)
                     .padding(.leading, 3)
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func menu() -> some View {
+        HStack(alignment: .center) {
+            
+            Divider()
+                .frame(width: 1)
+            
+            BottomLabelImageButton() {
+                print("전화")
+            }
+            .image("phone.fill")
+            .text("전화")
+            .imageColor(Color(uiColor: .darkGray))
+            .textColor(Color(uiColor: .darkGray))
+            .frame(width: 50, height: 50)
+            
+            Divider()
+                .frame(width: 1)
+            
+            BottomLabelImageButton() {
+                isSave.toggle()
+            }
+            .image("star.fill")
+            .text("저장")
+            .imageColor(isSave ? Color.yellow : Color(uiColor: .darkGray))
+            .textColor(Color(uiColor: .darkGray))
+            .frame(width: 50, height: 50)
+            
+            Divider()
+                .frame(width: 1)
+            
+            BottomLabelImageButton() {
+                print("공유")
+            }
+            .image("square.and.arrow.up.fill")
+            .text("공유")
+            .imageColor(Color(uiColor: .darkGray))
+            .textColor(Color(uiColor: .darkGray))
+            .frame(width: 50, height: 50)
+            
+            Divider()
+                .frame(width: 1)
         }
     }
 }
