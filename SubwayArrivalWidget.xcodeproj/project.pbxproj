@@ -10,12 +10,16 @@
 		0E0439132A49ADAA00EA1516 /* SubwayArrivalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */; };
 		0E0439152A49AF0C00EA1516 /* SubwayStationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439142A49AF0C00EA1516 /* SubwayStationInfoView.swift */; };
 		0E0439172A49B60400EA1516 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439162A49B60400EA1516 /* Color+.swift */; };
+		0E681F6A2A5181D900907965 /* SubwayTimeTableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E681F692A5181D900907965 /* SubwayTimeTableManager.swift */; };
+		0E681F6C2A51851400907965 /* UPDNLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E681F6B2A51851400907965 /* UPDNLine.swift */; };
+		0E681F6E2A51853400907965 /* TimeTableDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E681F6D2A51853400907965 /* TimeTableDay.swift */; };
+		0E681F702A51866700907965 /* SubwayTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E681F6F2A51866700907965 /* SubwayTimeTable.swift */; };
 		0E907D342A5019F500BA9111 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E907D332A5019F500BA9111 /* Date+.swift */; };
 		0E98F8262A3EFCB50081310B /* SubwayArrivalWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */; };
 		0E98F8282A3EFCB50081310B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8272A3EFCB50081310B /* ContentView.swift */; };
 		0E98F82A2A3EFCB60081310B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E98F8292A3EFCB60081310B /* Assets.xcassets */; };
 		0E98F82D2A3EFCB60081310B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E98F82C2A3EFCB60081310B /* Preview Assets.xcassets */; };
-		0E98F8342A3EFCCF0081310B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8332A3EFCCF0081310B /* Network.swift */; };
+		0E98F8342A3EFCCF0081310B /* RealTimeArrivalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8332A3EFCCF0081310B /* RealTimeArrivalManager.swift */; };
 		0E98F8362A3EFD280081310B /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8352A3EFD280081310B /* APIKey.swift */; };
 		0E98F8382A3EFDE40081310B /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8372A3EFDE40081310B /* String+.swift */; };
 		0E98F83B2A3F050C0081310B /* SubwayArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F83A2A3F050C0081310B /* SubwayArrival.swift */; };
@@ -35,13 +39,17 @@
 		0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalView.swift; sourceTree = "<group>"; };
 		0E0439142A49AF0C00EA1516 /* SubwayStationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationInfoView.swift; sourceTree = "<group>"; };
 		0E0439162A49B60400EA1516 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		0E681F692A5181D900907965 /* SubwayTimeTableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayTimeTableManager.swift; sourceTree = "<group>"; };
+		0E681F6B2A51851400907965 /* UPDNLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPDNLine.swift; sourceTree = "<group>"; };
+		0E681F6D2A51853400907965 /* TimeTableDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableDay.swift; sourceTree = "<group>"; };
+		0E681F6F2A51866700907965 /* SubwayTimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayTimeTable.swift; sourceTree = "<group>"; };
 		0E907D332A5019F500BA9111 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		0E98F8222A3EFCB50081310B /* SubwayArrivalWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwayArrivalWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalWidgetApp.swift; sourceTree = "<group>"; };
 		0E98F8272A3EFCB50081310B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0E98F8292A3EFCB60081310B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E98F82C2A3EFCB60081310B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0E98F8332A3EFCCF0081310B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		0E98F8332A3EFCCF0081310B /* RealTimeArrivalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeArrivalManager.swift; sourceTree = "<group>"; };
 		0E98F8352A3EFD280081310B /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		0E98F8372A3EFDE40081310B /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		0E98F8392A3F02990081310B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,7 +140,8 @@
 		0E98F83D2A3F14700081310B /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				0E98F8332A3EFCCF0081310B /* Network.swift */,
+				0E98F8332A3EFCCF0081310B /* RealTimeArrivalManager.swift */,
+				0E681F692A5181D900907965 /* SubwayTimeTableManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -153,6 +162,9 @@
 			children = (
 				0E98F83A2A3F050C0081310B /* SubwayArrival.swift */,
 				0E98F8482A3F23340081310B /* SubwayStation.swift */,
+				0E681F6B2A51851400907965 /* UPDNLine.swift */,
+				0E681F6D2A51853400907965 /* TimeTableDay.swift */,
+				0E681F6F2A51866700907965 /* SubwayTimeTable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +288,7 @@
 			files = (
 				0E98F8282A3EFCB50081310B /* ContentView.swift in Sources */,
 				0E0439172A49B60400EA1516 /* Color+.swift in Sources */,
+				0E681F6E2A51853400907965 /* TimeTableDay.swift in Sources */,
 				0EBF26E52A51744D003A5A14 /* SubwayArrivalInfoRow.swift in Sources */,
 				0EA7A09F2A4F16B300AC9D25 /* BottomLabelImageButton.swift in Sources */,
 				0E98F8262A3EFCB50081310B /* SubwayArrivalWidgetApp.swift in Sources */,
@@ -289,9 +302,12 @@
 				0E98F8382A3EFDE40081310B /* String+.swift in Sources */,
 				0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */,
 				0E98F8492A3F23340081310B /* SubwayStation.swift in Sources */,
+				0E681F6C2A51851400907965 /* UPDNLine.swift in Sources */,
 				0E0439132A49ADAA00EA1516 /* SubwayArrivalView.swift in Sources */,
+				0E681F6A2A5181D900907965 /* SubwayTimeTableManager.swift in Sources */,
 				0E98F8362A3EFD280081310B /* APIKey.swift in Sources */,
-				0E98F8342A3EFCCF0081310B /* Network.swift in Sources */,
+				0E98F8342A3EFCCF0081310B /* RealTimeArrivalManager.swift in Sources */,
+				0E681F702A51866700907965 /* SubwayTimeTable.swift in Sources */,
 				0E907D342A5019F500BA9111 /* Date+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

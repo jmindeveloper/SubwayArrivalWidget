@@ -21,7 +21,7 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     var upSubwayArrivalInfo: [RealtimeArrivalInfo] = []
     var downSubwayArrivalInfo: [RealtimeArrivalInfo] = []
     var fetchTime: Date = Date()
-    private let subwayArrivalManager: SubwayArrivalProtocol = SubwayArrivalManager()
+    private let subwayArrivalManager: RealTimeArrivalProtocol = RealTimeArrivalManager()
     private var subscriptions = Set<AnyCancellable>()
     
     func getSubwayArrivalData(_ stationName: String) {
