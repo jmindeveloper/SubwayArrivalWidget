@@ -11,7 +11,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
     @State var station: Station
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel
-    @State private var isHaHang: Bool = false
+    @State private var isUp: Bool = true
     
     @State private var isSave: Bool = false
     
@@ -165,7 +165,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     Button {
-                        isHaHang = false
+                        isUp = true
                     } label: {
                         Text("상행(내선)")
                             .foregroundColor(Color(uiColor: .label))
@@ -173,7 +173,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                     }
                     
                     Button {
-                        isHaHang = true
+                        isUp = false
                     } label: {
                         Text("하행(외선)")
                             .foregroundColor(Color(uiColor: .label))
@@ -183,7 +183,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                 
                 HStack {
                     
-                    if isHaHang {
+                    if !isUp {
                         Spacer()
                     }
                     
@@ -191,20 +191,18 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                         .fill(Color(uiColor: .label))
                         .frame(width: proxy.size.width / 2, height: 4)
                     
-                    if !isHaHang {
+                    if isUp {
                         Spacer()
                     }
                 }
-                .animation(.linear(duration: 0.1), value: isHaHang)
+                .animation(.linear(duration: 0.1), value: isUp)
                 
                 Divider()
                 
-                if viewModel.subwayArrivalInfo?.realtimeArrivalList != nil {
-                    ForEach(0..<3) { index in
-                        let vm = SubwayArrivalInfoRowViewModel(info: (viewModel.subwayArrivalInfo?.realtimeArrivalList ?? [])[index])
-                        SubwayArrivalInfoRow(viewModel: vm)
-                            .padding(.vertical, 6)
-                    }
+                ForEach(isUp ? viewModel.upSubwayArrivalInfo : viewModel.downSubwayArrivalInfo) { info in
+                    let vm = SubwayArrivalInfoRowViewModel(info: info)
+                    SubwayArrivalInfoRow(viewModel: vm)
+                        .padding(.vertical, 6)
                 }
             }
         }

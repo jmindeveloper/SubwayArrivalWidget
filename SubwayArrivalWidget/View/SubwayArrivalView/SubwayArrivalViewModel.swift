@@ -11,11 +11,15 @@ import Combine
 protocol SubwayArrivalViewModelInterface: ObservableObject {
     func getSubwayArrivalData(_ stationName: String)
     var subwayArrivalInfo: SubwayArrival? { get set }
+    var upSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
+    var downSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
     var fetchTime: Date { get set }
 }
 
 final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     @Published var subwayArrivalInfo: SubwayArrival?
+    var upSubwayArrivalInfo: [RealtimeArrivalInfo] = []
+    var downSubwayArrivalInfo: [RealtimeArrivalInfo] = []
     var fetchTime: Date = Date()
     private let subwayArrivalManager: SubwayArrivalProtocol = SubwayArrivalManager()
     private var subscriptions = Set<AnyCancellable>()
@@ -38,8 +42,13 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
                 }
             } receiveValue: { [weak self] arrival in
                 self?.subwayArrivalInfo = arrival
+                self?.upSubwayArrivalInfo = arrival.realtimeArrivalList.filter {
+                    $0.updnLine.isUp
+                }
+                self?.downSubwayArrivalInfo = arrival.realtimeArrivalList.filter {
+                    !$0.updnLine.isUp
+                }
                 self?.fetchTime = Date()
-                print("sakdlfjsd --> ", arrival.realtimeArrivalList.first?.trainLineNm)
             }.store(in: &subscriptions)
 
     }
