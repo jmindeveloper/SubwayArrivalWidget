@@ -11,8 +11,6 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
     @State var station: Station
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel
-    @State private var isUp: Bool = true
-    
     @State private var isSave: Bool = false
     
     var body: some View {
@@ -35,7 +33,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                     .frame(width: UIScreen.main.bounds.width, height: 14)
                 
                 HStack(alignment: .bottom) {
-                    RealTimeArrivalInfoToggle(lineColor: station.lineNum.lineColor ?? .black)
+                    RealTimeArrivalInfoToggle(toggle: $viewModel.isRealtimeArrival, lineColor: station.lineNum.lineColor ?? .black)
                         .frame(width: 80, height: 30)
                     
                     Spacer()
@@ -165,7 +163,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     Button {
-                        isUp = true
+                        viewModel.isUp = true
                     } label: {
                         Text("상행(내선)")
                             .foregroundColor(Color(uiColor: .label))
@@ -173,7 +171,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                     }
                     
                     Button {
-                        isUp = false
+                        viewModel.isUp = false
                     } label: {
                         Text("하행(외선)")
                             .foregroundColor(Color(uiColor: .label))
@@ -183,7 +181,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                 
                 HStack {
                     
-                    if !isUp {
+                    if !viewModel.isUp {
                         Spacer()
                     }
                     
@@ -191,21 +189,51 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                         .fill(Color(uiColor: .label))
                         .frame(width: proxy.size.width / 2, height: 4)
                     
-                    if isUp {
+                    if viewModel.isUp {
                         Spacer()
                     }
                 }
-                .animation(.linear(duration: 0.1), value: isUp)
+                .animation(.linear(duration: 0.1), value: viewModel.isUp)
                 
                 Divider()
                 
-                ForEach(isUp ? viewModel.upSubwayArrivalInfo : viewModel.downSubwayArrivalInfo) { info in
+                if !viewModel.isRealtimeArrival {
+                    selectTimeHour()
+                }
+                
+                ForEach(viewModel.isUp ? viewModel.upSubwayArrivalInfo : viewModel.downSubwayArrivalInfo) { info in
                     let vm = SubwayArrivalInfoRowViewModel(info: info)
                     SubwayArrivalInfoRow(viewModel: vm)
                         .padding(.vertical, 6)
                 }
             }
         }
+    }
+    
+    @ViewBuilder
+    private func selectTimeHour() -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(5..<24) { index in
+                    Text("\(index)시")
+                        .frame(width: 50, height: 26)
+                        .background {
+                            Capsule()
+                                .fill(Color(uiColor: .red))
+                        }
+                }
+            }
+        }
+        .safeAreaInset(edge: .leading) {
+            EmptyView()
+                .frame(width: 4)
+        }
+        .safeAreaInset(edge: .trailing) {
+            EmptyView()
+                .frame(width: 4)
+        }
+        .frame(height: 26)
+        .padding(.top, 6)
     }
 }
 

@@ -10,19 +10,28 @@ import Combine
 
 protocol SubwayArrivalViewModelInterface: ObservableObject {
     func getSubwayArrivalData(_ stationName: String)
+    func getSubwayTimeTableData(_ stationCode: String)
     var subwayArrivalInfo: SubwayArrival? { get set }
     var upSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
     var downSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
     var fetchTime: Date { get set }
+    var upSubwayTimeTableInfo: SubwayTimeTable? { get set }
+    var downSubwayTimeTableInfo: SubwayTimeTable? { get set }
+    var isUp: Bool { get set }
+    var isRealtimeArrival: Bool { get set }
 }
 
 final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     @Published var subwayArrivalInfo: SubwayArrival?
     var upSubwayArrivalInfo: [RealtimeArrivalInfo] = []
     var downSubwayArrivalInfo: [RealtimeArrivalInfo] = []
+    var upSubwayTimeTableInfo: SubwayTimeTable? = nil
+    var downSubwayTimeTableInfo: SubwayTimeTable? = nil
     var fetchTime: Date = Date()
     private let subwayArrivalManager: RealTimeArrivalProtocol = RealTimeArrivalManager()
     private var subscriptions = Set<AnyCancellable>()
+    @Published var isUp: Bool = true
+    @Published var isRealtimeArrival: Bool = true
     
     func getSubwayArrivalData(_ stationName: String) {
         subwayArrivalManager.getArrivalData(stationName)
@@ -50,7 +59,10 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
                 }
                 self?.fetchTime = Date()
             }.store(in: &subscriptions)
-
+    }
+    
+    func getSubwayTimeTableData(_ stationCode: String) {
+        
     }
     
     private func decodingError(error: Error) {
