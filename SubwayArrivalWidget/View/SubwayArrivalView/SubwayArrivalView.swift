@@ -11,6 +11,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
     @State var station: Station
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel
+    @State private var isHaHang: Bool = false
     
     @State private var isSave: Bool = false
     
@@ -36,26 +37,28 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                 HStack(alignment: .bottom) {
                     RealTimeArrivalInfoToggle(lineColor: station.lineNum.lineColor ?? .black)
                         .frame(width: 80, height: 30)
-                        .padding(.leading, 16)
                     
                     Spacer()
                     
                     HStack {
-                        Text("00:00")
+                        Text(viewModel.fetchTime.timeToString())
                             .foregroundColor(Color(uiColor: .systemGray))
                         
                         Button {
-                            print("reload")
+                            viewModel.getSubwayArrivalData(station.stationName)
                         } label: {
                             Image(systemName: "arrow.clockwise")
                                 .foregroundColor(station.lineNum.lineColor ?? .black)
                                 .frame(width: 15, height: 15)
                         }
                     }
-                    .padding(.trailing, 16)
-                    
                 }
-                .padding(.top, 16)
+                .padding([.top, .horizontal], 16)
+                
+                arrivalInfoTabel()
+                    .border(Color(uiColor: .label), width: 1)
+                    .padding(.top, 10)
+                    .padding(.horizontal, 16)
                 
                 Spacer()
             }
@@ -153,6 +156,53 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
             
             Divider()
                 .frame(width: 1)
+        }
+    }
+    
+    @ViewBuilder
+    private func arrivalInfoTabel() -> some View {
+        GeometryReader { proxy in
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    Button {
+                        isHaHang = false
+                    } label: {
+                        Text("상행(외선)")
+                            .foregroundColor(Color(uiColor: .label))
+                            .frame(width: (proxy.size.width) / 2, height: 40)
+                    }
+                    
+                    Rectangle()
+                        .fill(Color(uiColor: .label))
+                        .frame(width: 1, height: 40)
+                    
+                    Button {
+                        isHaHang = true
+                    } label: {
+                        Text("하행(내선)")
+                            .foregroundColor(Color(uiColor: .label))
+                            .frame(width: (proxy.size.width) / 2, height: 40)
+                    }
+                }
+                
+                HStack {
+                    
+                    if isHaHang {
+                        Spacer()
+                    }
+                    
+                    Rectangle()
+                        .fill(Color(uiColor: .label))
+                        .frame(width: proxy.size.width / 2, height: 4)
+                    
+                    if !isHaHang {
+                        Spacer()
+                    }
+                }
+                .animation(.linear(duration: 0.1), value: isHaHang)
+                
+                Divider()
+            }
         }
     }
 }

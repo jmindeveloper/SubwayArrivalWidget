@@ -10,6 +10,7 @@
 		0E0439132A49ADAA00EA1516 /* SubwayArrivalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */; };
 		0E0439152A49AF0C00EA1516 /* SubwayStationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439142A49AF0C00EA1516 /* SubwayStationInfoView.swift */; };
 		0E0439172A49B60400EA1516 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439162A49B60400EA1516 /* Color+.swift */; };
+		0E907D342A5019F500BA9111 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E907D332A5019F500BA9111 /* Date+.swift */; };
 		0E98F8262A3EFCB50081310B /* SubwayArrivalWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */; };
 		0E98F8282A3EFCB50081310B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E98F8272A3EFCB50081310B /* ContentView.swift */; };
 		0E98F82A2A3EFCB60081310B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E98F8292A3EFCB60081310B /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalView.swift; sourceTree = "<group>"; };
 		0E0439142A49AF0C00EA1516 /* SubwayStationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationInfoView.swift; sourceTree = "<group>"; };
 		0E0439162A49B60400EA1516 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		0E907D332A5019F500BA9111 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		0E98F8222A3EFCB50081310B /* SubwayArrivalWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwayArrivalWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E98F8252A3EFCB50081310B /* SubwayArrivalWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalWidgetApp.swift; sourceTree = "<group>"; };
 		0E98F8272A3EFCB50081310B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				0E98F8372A3EFDE40081310B /* String+.swift */,
 				0E0439162A49B60400EA1516 /* Color+.swift */,
+				0E907D332A5019F500BA9111 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				0E0439132A49ADAA00EA1516 /* SubwayArrivalView.swift in Sources */,
 				0E98F8362A3EFD280081310B /* APIKey.swift in Sources */,
 				0E98F8342A3EFCCF0081310B /* Network.swift in Sources */,
+				0E907D342A5019F500BA9111 /* Date+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
