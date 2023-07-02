@@ -167,19 +167,15 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                     Button {
                         isHaHang = false
                     } label: {
-                        Text("상행(외선)")
+                        Text("상행(내선)")
                             .foregroundColor(Color(uiColor: .label))
                             .frame(width: (proxy.size.width) / 2, height: 40)
                     }
                     
-                    Rectangle()
-                        .fill(Color(uiColor: .label))
-                        .frame(width: 1, height: 40)
-                    
                     Button {
                         isHaHang = true
                     } label: {
-                        Text("하행(내선)")
+                        Text("하행(외선)")
                             .foregroundColor(Color(uiColor: .label))
                             .frame(width: (proxy.size.width) / 2, height: 40)
                     }
@@ -202,6 +198,14 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                 .animation(.linear(duration: 0.1), value: isHaHang)
                 
                 Divider()
+                
+                if viewModel.subwayArrivalInfo?.realtimeArrivalList != nil {
+                    ForEach(0..<3) { index in
+                        let vm = SubwayArrivalInfoRowViewModel(info: (viewModel.subwayArrivalInfo?.realtimeArrivalList ?? [])[index])
+                        SubwayArrivalInfoRow(viewModel: vm)
+                            .padding(.vertical, 6)
+                    }
+                }
             }
         }
     }

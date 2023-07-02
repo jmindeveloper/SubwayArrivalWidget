@@ -26,6 +26,9 @@
 		0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */; };
 		0EA7A09C2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA7A09B2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift */; };
 		0EA7A09F2A4F16B300AC9D25 /* BottomLabelImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA7A09E2A4F16B300AC9D25 /* BottomLabelImageButton.swift */; };
+		0EBF26E52A51744D003A5A14 /* SubwayArrivalInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF26E42A51744D003A5A14 /* SubwayArrivalInfoRow.swift */; };
+		0EBF26E72A517485003A5A14 /* SubwayArrivalInfoRowViewModelInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF26E62A517485003A5A14 /* SubwayArrivalInfoRowViewModelInterface.swift */; };
+		0EBF26E92A517647003A5A14 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF26E82A517647003A5A14 /* Int+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalViewModel.swift; sourceTree = "<group>"; };
 		0EA7A09B2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeArrivalInfoToggle.swift; sourceTree = "<group>"; };
 		0EA7A09E2A4F16B300AC9D25 /* BottomLabelImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLabelImageButton.swift; sourceTree = "<group>"; };
+		0EBF26E42A51744D003A5A14 /* SubwayArrivalInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalInfoRow.swift; sourceTree = "<group>"; };
+		0EBF26E62A517485003A5A14 /* SubwayArrivalInfoRowViewModelInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalInfoRowViewModelInterface.swift; sourceTree = "<group>"; };
+		0EBF26E82A517647003A5A14 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 		0E0439112A49AD9800EA1516 /* SubwayArrivalView */ = {
 			isa = PBXGroup;
 			children = (
+				0EBF26E32A51743B003A5A14 /* SubwayArrivalInfoRow */,
 				0EA7A09A2A4EECDD00AC9D25 /* RealTimeArrivalInfoToggle */,
 				0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */,
 				0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */,
@@ -154,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				0E98F8372A3EFDE40081310B /* String+.swift */,
+				0EBF26E82A517647003A5A14 /* Int+.swift */,
 				0E0439162A49B60400EA1516 /* Color+.swift */,
 				0E907D332A5019F500BA9111 /* Date+.swift */,
 			);
@@ -184,6 +192,15 @@
 				0EA7A09E2A4F16B300AC9D25 /* BottomLabelImageButton.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		0EBF26E32A51743B003A5A14 /* SubwayArrivalInfoRow */ = {
+			isa = PBXGroup;
+			children = (
+				0EBF26E42A51744D003A5A14 /* SubwayArrivalInfoRow.swift */,
+				0EBF26E62A517485003A5A14 /* SubwayArrivalInfoRowViewModelInterface.swift */,
+			);
+			path = SubwayArrivalInfoRow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,12 +276,15 @@
 			files = (
 				0E98F8282A3EFCB50081310B /* ContentView.swift in Sources */,
 				0E0439172A49B60400EA1516 /* Color+.swift in Sources */,
+				0EBF26E52A51744D003A5A14 /* SubwayArrivalInfoRow.swift in Sources */,
 				0EA7A09F2A4F16B300AC9D25 /* BottomLabelImageButton.swift in Sources */,
 				0E98F8262A3EFCB50081310B /* SubwayArrivalWidgetApp.swift in Sources */,
 				0E98F8432A3F16DD0081310B /* SearchSubwayStation.swift in Sources */,
+				0EBF26E72A517485003A5A14 /* SubwayArrivalInfoRowViewModelInterface.swift in Sources */,
 				0E0439152A49AF0C00EA1516 /* SubwayStationInfoView.swift in Sources */,
 				0E98F83B2A3F050C0081310B /* SubwayArrival.swift in Sources */,
 				0EA7A09C2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift in Sources */,
+				0EBF26E92A517647003A5A14 /* Int+.swift in Sources */,
 				0E98F8452A3F19EC0081310B /* SearchSubwayStationViewModel.swift in Sources */,
 				0E98F8382A3EFDE40081310B /* String+.swift in Sources */,
 				0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */,
