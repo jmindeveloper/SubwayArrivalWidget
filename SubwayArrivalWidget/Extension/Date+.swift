@@ -14,4 +14,18 @@ extension Date {
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: self)
     }
+    
+    static func getTimeTableDay() -> TimeTableDay {
+        let date = Date()
+        let calendar = Calendar.current
+        let component = calendar.component(.weekday, from: date)
+        
+        if component == 1 {
+            return .Sundays
+        } else if component == 7 {
+            return .Saturdays
+        } else {
+            return .Weekdays
+        }
+    }
 }

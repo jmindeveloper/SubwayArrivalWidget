@@ -105,7 +105,7 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     }
     
     func getSubwayTimeTableData(_ stationCode: String) {
-        subwayTimeTableManager.getTimeTabel(stationCode, day: .Weekdays, isUp: isUp)
+        subwayTimeTableManager.getTimeTabel(stationCode, day: Date.getTimeTableDay(), isUp: isUp)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] subscribe in
                 switch subscribe {
