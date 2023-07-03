@@ -8,14 +8,14 @@
 import Foundation
 
 struct SubwayTimeTable: Codable {
-    let timeTable: SearchSTNTimeTableByFRCodeService
+    let timeTable: SearchSTNTimeTableByIDService
 
     enum CodingKeys: String, CodingKey {
-        case timeTable = "SearchSTNTimeTableByFRCodeService"
+        case timeTable = "SearchSTNTimeTableByIDService"
     }
 }
 
-struct SearchSTNTimeTableByFRCodeService: Codable {
+struct SearchSTNTimeTableByIDService: Codable {
     let listTotalCount: Int
     let result: Result
     let row: [Row]
@@ -36,7 +36,8 @@ struct Result: Codable {
     }
 }
 
-struct Row: Codable {
+struct Row: Codable, Identifiable {
+    let id: String = UUID().uuidString
     let lineNum: String
     let frCode: String
     let stationCD: String

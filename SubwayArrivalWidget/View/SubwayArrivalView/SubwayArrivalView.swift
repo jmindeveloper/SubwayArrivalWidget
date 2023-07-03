@@ -198,12 +198,17 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                 
                 if !viewModel.isRealtimeArrival {
                     selectTimeHour()
-                }
-                
-                ForEach(viewModel.isUp ? viewModel.upSubwayArrivalInfo : viewModel.downSubwayArrivalInfo) { info in
-                    let vm = SubwayArrivalInfoRowViewModel(info: info)
-                    SubwayArrivalInfoRow(viewModel: vm)
-                        .padding(.vertical, 6)
+                    ScrollView(.vertical) {
+                        ForEach((viewModel.isUp ? viewModel.upSubwayTimeTableInfo?.timeTable.row ?? [] : viewModel.downSubwayTimeTableInfo?.timeTable.row) ?? []) { time in
+                            Text(time.arrivetime)
+                        }
+                    }
+                } else {
+                    ForEach(viewModel.isUp ? viewModel.upSubwayArrivalInfo : viewModel.downSubwayArrivalInfo) { info in
+                        let vm = SubwayArrivalInfoRowViewModel(info: info)
+                        SubwayArrivalInfoRow(viewModel: vm)
+                            .padding(.vertical, 6)
+                    }
                 }
             }
         }
@@ -238,6 +243,6 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
 
 struct BottomLabelImageButton_Previews: PreviewProvider {
     static var previews: some View {
-        SubwayArrivalView(viewModel: SubwayArrivalViewModel(station: Station(lineNum: LineNum.lineSecond, stationName: "강남")))
+        SubwayArrivalView(viewModel: SubwayArrivalViewModel(station: Station(lineNum: LineNum.lineSecond, stationName: "강남", stationCode: "3039")))
     }
 }

@@ -9,20 +9,20 @@ import Foundation
 import Combine
 
 protocol SubwayTimeTableProtocol {
-    func getTimeTabel(_ code: String, day: TimeTableDay, isUp: UPDNLine) -> AnyPublisher<SubwayTimeTable, NetworkError>
+    func getTimeTabel(_ code: String, day: TimeTableDay, isUp: Bool) -> AnyPublisher<SubwayTimeTable, NetworkError>
 }
 
 final class SubwayTimeTableManager: SubwayTimeTableProtocol {
     private let session = URLSession(configuration: .default)
     private let apiKey = APIKey.apiKey
-    private lazy var baseURLString: String = "http://openapi.seoul.go.kr:8088/\(apiKey)/json/SearchSTNTimeTableByFRCodeService/1/100/"
+    private lazy var baseURLString: String = "http://openapi.seoul.go.kr:8088/\(apiKey)/json/SearchSTNTimeTableByIDService/1/100/"
     
     func getTimeTabel(
         _ code: String,
         day: TimeTableDay,
-        isUp: UPDNLine
+        isUp: Bool
     ) -> AnyPublisher<SubwayTimeTable, NetworkError> {
-        let urlString = baseURLString + "\(code)/" + "\(day.code)/" + "\(isUp.code)"
+        let urlString = baseURLString + "\(code)/" + "\(day.code)/" + "\(isUp ? 1 : 2)"
         guard let url = URL(string: urlString) else {
             return Fail(error: NetworkError.wrongURL).eraseToAnyPublisher()
         }
