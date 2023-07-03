@@ -199,8 +199,11 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                 if !viewModel.isRealtimeArrival {
                     selectTimeHour()
                     ScrollView(.vertical) {
-                        ForEach((viewModel.isUp ? viewModel.upSubwayTimeTableInfo?.timeTable.row ?? [] : viewModel.downSubwayTimeTableInfo?.timeTable.row) ?? []) { time in
-                            Text(time.arrivetime)
+                        ForEach((viewModel.isUp ? viewModel.upSubwayTimeTableInfo?.timeTable.row ?? [] : viewModel.downSubwayTimeTableInfo?.timeTable.row) ?? []) { info in
+                            let vm = SubwayTimeTableInfoViewModel(info: info)
+                            SubwayTimeTableInfoRow(viewModel: vm)
+                                .padding(.vertical, 6)
+                                .frame(width: proxy.size.width)
                         }
                     }
                 } else {
@@ -218,7 +221,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
     private func selectTimeHour() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(5..<24) { index in
+                ForEach(5..<25) { index in
                     Text("\(index)시")
                         .frame(width: 50, height: 26)
                         .background {
@@ -243,6 +246,6 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
 
 struct BottomLabelImageButton_Previews: PreviewProvider {
     static var previews: some View {
-        SubwayArrivalView(viewModel: SubwayArrivalViewModel(station: Station(lineNum: LineNum.lineSecond, stationName: "강남", stationCode: "3039")))
+        SubwayArrivalView(viewModel: SubwayArrivalViewModel(station: Station(lineNum: LineNum.lineSecond, stationName: "강남", stationCode: "0222")))
     }
 }

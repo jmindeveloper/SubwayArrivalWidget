@@ -15,7 +15,7 @@ protocol SubwayTimeTableProtocol {
 final class SubwayTimeTableManager: SubwayTimeTableProtocol {
     private let session = URLSession(configuration: .default)
     private let apiKey = APIKey.apiKey
-    private lazy var baseURLString: String = "http://openapi.seoul.go.kr:8088/\(apiKey)/json/SearchSTNTimeTableByIDService/1/100/"
+    private lazy var baseURLString: String = "http://openapi.seoul.go.kr:8088/\(apiKey)/json/SearchSTNTimeTableByIDService/1/300/"
     
     func getTimeTabel(
         _ code: String,

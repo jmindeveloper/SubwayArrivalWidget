@@ -30,6 +30,8 @@
 		0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */; };
 		0EA7A09C2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA7A09B2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift */; };
 		0EA7A09F2A4F16B300AC9D25 /* BottomLabelImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA7A09E2A4F16B300AC9D25 /* BottomLabelImageButton.swift */; };
+		0EB09AAE2A52F960007D8BE9 /* SubwayTimeTableInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB09AAD2A52F960007D8BE9 /* SubwayTimeTableInfoRow.swift */; };
+		0EB09AB02A52F97B007D8BE9 /* SubwayTimeTableInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB09AAF2A52F97B007D8BE9 /* SubwayTimeTableInfoViewModel.swift */; };
 		0EBF26E52A51744D003A5A14 /* SubwayArrivalInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF26E42A51744D003A5A14 /* SubwayArrivalInfoRow.swift */; };
 		0EBF26E72A517485003A5A14 /* SubwayArrivalInfoRowViewModelInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF26E62A517485003A5A14 /* SubwayArrivalInfoRowViewModelInterface.swift */; };
 		0EBF26E92A517647003A5A14 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF26E82A517647003A5A14 /* Int+.swift */; };
@@ -61,6 +63,8 @@
 		0E9D233D2A4C676500BDEC6A /* SubwayArrivalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalViewModel.swift; sourceTree = "<group>"; };
 		0EA7A09B2A4EECF800AC9D25 /* RealTimeArrivalInfoToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeArrivalInfoToggle.swift; sourceTree = "<group>"; };
 		0EA7A09E2A4F16B300AC9D25 /* BottomLabelImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLabelImageButton.swift; sourceTree = "<group>"; };
+		0EB09AAD2A52F960007D8BE9 /* SubwayTimeTableInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayTimeTableInfoRow.swift; sourceTree = "<group>"; };
+		0EB09AAF2A52F97B007D8BE9 /* SubwayTimeTableInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayTimeTableInfoViewModel.swift; sourceTree = "<group>"; };
 		0EBF26E42A51744D003A5A14 /* SubwayArrivalInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalInfoRow.swift; sourceTree = "<group>"; };
 		0EBF26E62A517485003A5A14 /* SubwayArrivalInfoRowViewModelInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalInfoRowViewModelInterface.swift; sourceTree = "<group>"; };
 		0EBF26E82A517647003A5A14 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
@@ -80,6 +84,7 @@
 		0E0439112A49AD9800EA1516 /* SubwayArrivalView */ = {
 			isa = PBXGroup;
 			children = (
+				0EB09AAC2A52F950007D8BE9 /* SubwayTimeTableInfoRow */,
 				0EBF26E32A51743B003A5A14 /* SubwayArrivalInfoRow */,
 				0EA7A09A2A4EECDD00AC9D25 /* RealTimeArrivalInfoToggle */,
 				0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */,
@@ -206,6 +211,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		0EB09AAC2A52F950007D8BE9 /* SubwayTimeTableInfoRow */ = {
+			isa = PBXGroup;
+			children = (
+				0EB09AAD2A52F960007D8BE9 /* SubwayTimeTableInfoRow.swift */,
+				0EB09AAF2A52F97B007D8BE9 /* SubwayTimeTableInfoViewModel.swift */,
+			);
+			path = SubwayTimeTableInfoRow;
+			sourceTree = "<group>";
+		};
 		0EBF26E32A51743B003A5A14 /* SubwayArrivalInfoRow */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,10 +317,12 @@
 				0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */,
 				0E98F8492A3F23340081310B /* SubwayStation.swift in Sources */,
 				0E681F6C2A51851400907965 /* UPDNLine.swift in Sources */,
+				0EB09AB02A52F97B007D8BE9 /* SubwayTimeTableInfoViewModel.swift in Sources */,
 				0E0439132A49ADAA00EA1516 /* SubwayArrivalView.swift in Sources */,
 				0E681F6A2A5181D900907965 /* SubwayTimeTableManager.swift in Sources */,
 				0E98F8362A3EFD280081310B /* APIKey.swift in Sources */,
 				0E98F8342A3EFCCF0081310B /* RealTimeArrivalManager.swift in Sources */,
+				0EB09AAE2A52F960007D8BE9 /* SubwayTimeTableInfoRow.swift in Sources */,
 				0E681F702A51866700907965 /* SubwayTimeTable.swift in Sources */,
 				0E907D342A5019F500BA9111 /* Date+.swift in Sources */,
 			);
