@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewModelInterface {
-    @State var station: Station
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel
     @State private var isSave: Bool = false
@@ -33,7 +32,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                     .frame(width: UIScreen.main.bounds.width, height: 14)
                 
                 HStack(alignment: .bottom) {
-                    RealTimeArrivalInfoToggle(toggle: $viewModel.isRealtimeArrival, lineColor: station.lineNum.lineColor ?? .black)
+                    RealTimeArrivalInfoToggle(toggle: $viewModel.isRealtimeArrival, lineColor: viewModel.station.lineNum.lineColor ?? .black)
                         .frame(width: 80, height: 30)
                     
                     Spacer()
@@ -43,10 +42,10 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                             .foregroundColor(Color(uiColor: .systemGray))
                         
                         Button {
-                            viewModel.getSubwayArrivalData(station.stationName)
+                            viewModel.getSubwayArrivalData()
                         } label: {
                             Image(systemName: "arrow.clockwise")
-                                .foregroundColor(station.lineNum.lineColor ?? .black)
+                                .foregroundColor(viewModel.lineColor)
                                 .frame(width: 15, height: 15)
                         }
                     }
@@ -66,23 +65,23 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "xmark")
-                            .foregroundColor(station.lineNum.lineColor ?? Color(uiColor: .label))
+                            .foregroundColor(viewModel.lineColor)
                     }
                 }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     HStack(alignment: .bottom, spacing: 2) {
-                        Text(station.stationName)
+                        Text(viewModel.stationName)
                             .font(.title)
-                        Text(station.lineNum.str)
-                            .foregroundColor(station.lineNum.lineColor)
+                        Text(viewModel.station.lineNum.str)
+                            .foregroundColor(viewModel.lineColor)
                     }
                 }
             }
         }
         .onAppear {
-            viewModel.getSubwayArrivalData(station.stationName)
+            viewModel.getSubwayArrivalData()
         }
     }
     
@@ -90,21 +89,21 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
     private func stationInfoCapsuleView() -> some View {
         ZStack {
             Capsule()
-                .fill(station.lineNum.lineColor ?? .white)
+                .fill(viewModel.lineColor)
                 .frame(width: 120, height: 50)
             Capsule()
                 .fill(.white)
                 .frame(width: 110, height: 40)
             HStack {
-                Text(String(station.lineNum.str.first ?? " "))
+                Text(String(viewModel.station.lineNum.str.first ?? " "))
                     .foregroundColor(.white)
                     .background {
                         Circle()
-                            .fill(station.lineNum.lineColor ?? .black)
+                            .fill(viewModel.lineColor)
                             .frame(width: 21, height: 21)
                     }
                 
-                Text(station.stationName)
+                Text(viewModel.stationName)
                     .fontWeight(.semibold)
                     .foregroundColor(.black)
                     .padding(.leading, 3)
@@ -239,6 +238,6 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
 
 struct BottomLabelImageButton_Previews: PreviewProvider {
     static var previews: some View {
-        SubwayArrivalView(station: Station(lineNum: LineNum.lineSecond, stationName: "강남"), viewModel: SubwayArrivalViewModel())
+        SubwayArrivalView(viewModel: SubwayArrivalViewModel(station: Station(lineNum: LineNum.lineSecond, stationName: "강남")))
     }
 }

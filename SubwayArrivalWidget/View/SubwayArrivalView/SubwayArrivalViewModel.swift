@@ -5,11 +5,11 @@
 //  Created by J_Min on 2023/06/28.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 protocol SubwayArrivalViewModelInterface: ObservableObject {
-    func getSubwayArrivalData(_ stationName: String)
+    func getSubwayArrivalData()
     func getSubwayTimeTableData(_ stationCode: String)
     var subwayArrivalInfo: SubwayArrival? { get set }
     var upSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
@@ -19,6 +19,9 @@ protocol SubwayArrivalViewModelInterface: ObservableObject {
     var downSubwayTimeTableInfo: SubwayTimeTable? { get set }
     var isUp: Bool { get set }
     var isRealtimeArrival: Bool { get set }
+    var station: Station { get set }
+    var lineColor: Color { get }
+    var stationName: String { get }
 }
 
 final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
@@ -29,11 +32,26 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     var downSubwayTimeTableInfo: SubwayTimeTable? = nil
     var fetchTime: Date = Date()
     private let subwayArrivalManager: RealTimeArrivalProtocol = RealTimeArrivalManager()
+    private let subwayTimeTableManager: SubwayTimeTableProtocol = SubwayTimeTableManager()
     private var subscriptions = Set<AnyCancellable>()
+    @Published var station: Station
     @Published var isUp: Bool = true
-    @Published var isRealtimeArrival: Bool = true
+    var stationName: String {
+        return station.stationName
+    }
+    var lineColor: Color {
+        return station.lineNum.lineColor ?? .init(uiColor: .label)
+    }
+    @Published var isRealtimeArrival: Bool = true {
+        didSet {
+            
+        }
+    }
     
     func getSubwayArrivalData(_ stationName: String) {
+    init(station: Station) {
+        self.station = station
+    }
         subwayArrivalManager.getArrivalData(stationName)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] subscribe in
