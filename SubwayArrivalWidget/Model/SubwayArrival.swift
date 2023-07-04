@@ -22,22 +22,6 @@ struct ErrorMessage: Codable {
     let total: Int
 }
 
-enum UPDNLine: String, Codable {
-    case up1 = "상행"
-    case up2 = "내선"
-    case dn1 = "하행"
-    case dn2 = "외선"
-    
-    var isUp: Bool {
-        switch self {
-        case .up1, .up2:
-            return true
-        case .dn1, .dn2:
-            return false
-        }
-    }
-}
-
 // MARK: - RealtimeArrivalList
 struct RealtimeArrivalInfo: Codable, Identifiable {
     let id: String = UUID().uuidString

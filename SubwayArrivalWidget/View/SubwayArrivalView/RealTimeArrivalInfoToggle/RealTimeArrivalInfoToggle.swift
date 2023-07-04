@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RealTimeArrivalInfoToggle: View {
-    @State var toggleOn: Bool = false
+    @Binding var toggle: Bool
     @State var lineColor: Color
     
     var body: some View {
@@ -22,30 +22,30 @@ struct RealTimeArrivalInfoToggle: View {
                         .font(.system(size: 12))
                         .frame(width: proxy.size.width / 2, height: proxy.size.height)
                         .onTapGesture {
-                            toggleOn = false
+                            toggle = true
                         }
                     
                     Text("시간표")
                         .font(.system(size: 12))
                         .frame(width: proxy.size.width / 2, height: proxy.size.height)
                         .onTapGesture {
-                            toggleOn = true
+                            toggle = false
                         }
                 }
                 
                 HStack {
-                    if toggleOn {
+                    if !toggle {
                         Spacer()
                     }
                     
-                    RealTimeArrivalInfoToggleHighlight(lineColor: lineColor, toggle: $toggleOn)
+                    RealTimeArrivalInfoToggleHighlight(lineColor: lineColor, toggle: $toggle)
                         .frame(width: proxy.size.width / 2, height: proxy.size.height)
                     
-                    if !toggleOn {
+                    if toggle {
                         Spacer()
                     }
                 }
-                .animation(.easeIn(duration: 0.1), value: toggleOn)
+                .animation(.easeIn(duration: 0.1), value: toggle)
             }
         }
     }
@@ -61,17 +61,9 @@ struct RealTimeArrivalInfoToggleHighlight: View {
                 .stroke(lineColor)
                 .background { Capsule().fill(.white) }
             
-            Text(toggle ? "시간표" : "실시간")
+            Text(toggle ? "실시간" : "시간표")
                 .font(.system(size: 12))
                 .foregroundColor(lineColor)
         }
-    }
-}
-
-struct RealTimeArrivalInfoToggle_Previews: PreviewProvider {
-    static var previews: some View {
-        RealTimeArrivalInfoToggle(lineColor: .green)
-            .frame(width: 80, height: 30)
-            .previewLayout(.sizeThatFits)
     }
 }

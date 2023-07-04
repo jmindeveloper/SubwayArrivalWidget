@@ -22,10 +22,12 @@ struct Station: Codable, Hashable, Identifiable {
     let lineNum: LineNum
     /// 전철역 이름
     let stationName: String
+    let stationCode: String
 
     enum CodingKeys: String, CodingKey {
         case lineNum = "line_num"
         case stationName = "station_nm"
+        case stationCode = "station_cd"
     }
 }
 

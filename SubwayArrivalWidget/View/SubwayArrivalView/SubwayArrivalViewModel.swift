@@ -5,26 +5,78 @@
 //  Created by J_Min on 2023/06/28.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 protocol SubwayArrivalViewModelInterface: ObservableObject {
-    func getSubwayArrivalData(_ stationName: String)
+    func getSubwayArrivalData()
+    func getSubwayTimeTableData(_ stationCode: String)
     var subwayArrivalInfo: SubwayArrival? { get set }
     var upSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
     var downSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
     var fetchTime: Date { get set }
+    var upSubwayTimeTableInfo: SubwayTimeTable? { get set }
+    var downSubwayTimeTableInfo: SubwayTimeTable? { get set }
+    var isUp: Bool { get set }
+    var isRealtimeArrival: Bool { get set }
+    var station: Station { get set }
+    var lineColor: Color { get }
+    var stationName: String { get }
 }
 
 final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     @Published var subwayArrivalInfo: SubwayArrival?
-    var upSubwayArrivalInfo: [RealtimeArrivalInfo] = []
-    var downSubwayArrivalInfo: [RealtimeArrivalInfo] = []
+    @Published var upSubwayArrivalInfo: [RealtimeArrivalInfo] = []
+    @Published var downSubwayArrivalInfo: [RealtimeArrivalInfo] = []
+    @Published var upSubwayTimeTableInfo: SubwayTimeTable? = nil
+    @Published var downSubwayTimeTableInfo: SubwayTimeTable? = nil
     var fetchTime: Date = Date()
-    private let subwayArrivalManager: SubwayArrivalProtocol = SubwayArrivalManager()
+    private let subwayArrivalManager: RealTimeArrivalProtocol = RealTimeArrivalManager()
+    private let subwayTimeTableManager: SubwayTimeTableProtocol = SubwayTimeTableManager()
     private var subscriptions = Set<AnyCancellable>()
+    @Published var station: Station
+    @Published var isUp: Bool = true {
+        didSet {
+            if !isRealtimeArrival {
+                if isUp {
+                    if upSubwayTimeTableInfo == nil {
+                        getSubwayTimeTableData(station.stationCode)
+                    }
+                } else {
+                    if downSubwayTimeTableInfo == nil {
+                        getSubwayTimeTableData(station.stationCode)
+                    }
+                }
+            }
+        }
+    }
+    var stationName: String {
+        return station.stationName
+    }
+    var lineColor: Color {
+        return station.lineNum.lineColor ?? .init(uiColor: .label)
+    }
+    @Published var isRealtimeArrival: Bool = true {
+        willSet {
+            if newValue == false {
+                if isUp {
+                    if upSubwayTimeTableInfo == nil {
+                        getSubwayTimeTableData(station.stationCode)
+                    }
+                } else {
+                    if downSubwayTimeTableInfo == nil {
+                        getSubwayTimeTableData(station.stationCode)
+                    }
+                }
+            }
+        }
+    }
     
-    func getSubwayArrivalData(_ stationName: String) {
+    init(station: Station) {
+        self.station = station
+    }
+    
+    func getSubwayArrivalData() {
         subwayArrivalManager.getArrivalData(stationName)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] subscribe in
@@ -50,7 +102,31 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
                 }
                 self?.fetchTime = Date()
             }.store(in: &subscriptions)
-
+    }
+    
+    func getSubwayTimeTableData(_ stationCode: String) {
+        subwayTimeTableManager.getTimeTabel(stationCode, day: Date.getTimeTableDay(), isUp: isUp)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] subscribe in
+                switch subscribe {
+                case .finished:
+                    break
+                case .failure(.wrongURL):
+                    print("잘못된 URL")
+                case .failure(.response(code: let code)):
+                    print("statusCode --> ", code)
+                case .failure(.wrappedError(error: let error)):
+                    print(error.localizedDescription)
+                case .failure(.decodingError(error: let error)):
+                    self?.decodingError(error: error)
+                }
+            } receiveValue: { [weak self] table in
+                if self?.isUp == true {
+                    self?.upSubwayTimeTableInfo = table
+                } else {
+                    self?.downSubwayTimeTableInfo = table
+                }
+            }.store(in: &subscriptions)
     }
     
     private func decodingError(error: Error) {
