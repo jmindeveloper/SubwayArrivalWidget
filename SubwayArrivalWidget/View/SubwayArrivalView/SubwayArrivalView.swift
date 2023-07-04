@@ -10,7 +10,6 @@ import SwiftUI
 struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewModelInterface {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel
-    @State private var isSave: Bool = false
     
     var body: some View {
         NavigationView {
@@ -131,11 +130,11 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                 .frame(width: 1)
             
             BottomLabelImageButton() {
-                isSave.toggle()
+                viewModel.setStationBookMark()
             }
             .image("star.fill")
             .text("저장")
-            .imageColor(isSave ? Color.yellow : Color(uiColor: .darkGray))
+            .imageColor(viewModel.isStationBookMark ? Color.yellow : Color(uiColor: .darkGray))
             .textColor(Color(uiColor: .darkGray))
             .frame(width: 50, height: 50)
             

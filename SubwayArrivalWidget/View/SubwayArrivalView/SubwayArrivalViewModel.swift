@@ -11,6 +11,7 @@ import Combine
 protocol SubwayArrivalViewModelInterface: ObservableObject {
     func getSubwayArrivalData()
     func getSubwayTimeTableData(_ stationCode: String)
+    func setStationBookMark()
     var subwayArrivalInfo: SubwayArrival? { get set }
     var upSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
     var downSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
@@ -22,6 +23,7 @@ protocol SubwayArrivalViewModelInterface: ObservableObject {
     var station: Station { get set }
     var lineColor: Color { get }
     var stationName: String { get }
+    var isStationBookMark: Bool { get set }
 }
 
 final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
@@ -56,6 +58,7 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     var lineColor: Color {
         return station.lineNum.lineColor ?? .init(uiColor: .label)
     }
+    @Published var isStationBookMark: Bool
     @Published var isRealtimeArrival: Bool = true {
         willSet {
             if newValue == false {
@@ -74,6 +77,7 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     
     init(station: Station) {
         self.station = station
+        self.isStationBookMark = StationBookMark.isStationBookMark(stationCode: station.stationCode)
     }
     
     func getSubwayArrivalData() {
@@ -127,6 +131,10 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
                     self?.downSubwayTimeTableInfo = table
                 }
             }.store(in: &subscriptions)
+    }
+    
+    func setStationBookMark() {
+        isStationBookMark = StationBookMark.setStationBookMark(stationCode: station.stationCode)
     }
     
     private func decodingError(error: Error) {
