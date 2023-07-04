@@ -11,7 +11,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel
     @State private var isSave: Bool = false
-    @State private var scrollToIndex: Int = 0
+    @State private var selectHour: String = ""
     
     var body: some View {
         NavigationView {
@@ -121,7 +121,6 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
             
             BottomLabelImageButton() {
                 print("전화")
-                scrollToIndex = 5
             }
             .image("phone.fill")
             .text("전화")
@@ -206,6 +205,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                                 Section {
                                     HStack {
                                         Text("\(viewModel.subwayTimeTableInfo[index].key)시")
+                                            .id(viewModel.subwayTimeTableInfo[index].key)
                                         Spacer()
                                     }
                                     .padding(.horizontal, 16)
@@ -219,8 +219,10 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                                         .frame(width: proxy.size.width)
                                 }
                             }
-                            .onChange(of: scrollToIndex) { value in
-                                scrollProxy.scrollTo(value, anchor: .top)
+                            .onChange(of: selectHour) { value in
+                                withAnimation {
+                                    scrollProxy.scrollTo(value, anchor: .top)
+                                }
                             }
                         }
                     }
@@ -249,6 +251,9 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                         .background {
                             Capsule()
                                 .fill(Color(uiColor: .red))
+                        }
+                        .onTapGesture {
+                            selectHour = String(format: "%02d", index)
                         }
                 }
             }
