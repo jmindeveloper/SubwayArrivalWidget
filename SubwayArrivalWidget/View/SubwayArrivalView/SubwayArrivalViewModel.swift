@@ -15,8 +15,7 @@ protocol SubwayArrivalViewModelInterface: ObservableObject {
     var upSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
     var downSubwayArrivalInfo: [RealtimeArrivalInfo] { get set }
     var fetchTime: Date { get set }
-    var upSubwayTimeTableInfo: SubwayTimeTable? { get set }
-    var downSubwayTimeTableInfo: SubwayTimeTable? { get set }
+    var subwayTimeTableInfo: [Dictionary<String, [TimeTableRow]>.Element] { get set }
     var isUp: Bool { get set }
     var isRealtimeArrival: Bool { get set }
     var station: Station { get set }
@@ -28,8 +27,17 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     @Published var subwayArrivalInfo: SubwayArrival?
     @Published var upSubwayArrivalInfo: [RealtimeArrivalInfo] = []
     @Published var downSubwayArrivalInfo: [RealtimeArrivalInfo] = []
-    @Published var upSubwayTimeTableInfo: SubwayTimeTable? = nil
-    @Published var downSubwayTimeTableInfo: SubwayTimeTable? = nil
+    @Published var subwayTimeTableInfo: [Dictionary<String, [TimeTableRow]>.Element] = []
+    private var upSubwayTimeTableInfo: SubwayTimeTable? = nil {
+        didSet {
+            subwayTimeTableInfo = groupTimeTableByHour(upSubwayTimeTableInfo?.timeTable.row ?? [])
+        }
+    }
+    private var downSubwayTimeTableInfo: SubwayTimeTable? = nil {
+        didSet {
+            subwayTimeTableInfo = groupTimeTableByHour(downSubwayTimeTableInfo?.timeTable.row ?? [])
+        }
+    }
     var fetchTime: Date = Date()
     private let subwayArrivalManager: RealTimeArrivalProtocol = RealTimeArrivalManager()
     private let subwayTimeTableManager: SubwayTimeTableProtocol = SubwayTimeTableManager()
@@ -41,10 +49,14 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
                 if isUp {
                     if upSubwayTimeTableInfo == nil {
                         getSubwayTimeTableData(station.stationCode)
+                    } else {
+                        subwayTimeTableInfo = groupTimeTableByHour(upSubwayTimeTableInfo?.timeTable.row ?? [])
                     }
                 } else {
                     if downSubwayTimeTableInfo == nil {
                         getSubwayTimeTableData(station.stationCode)
+                    } else {
+                        subwayTimeTableInfo = groupTimeTableByHour(downSubwayTimeTableInfo?.timeTable.row ?? [])
                     }
                 }
             }
@@ -127,6 +139,28 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
                     self?.downSubwayTimeTableInfo = table
                 }
             }.store(in: &subscriptions)
+    }
+    
+    private func groupTimeTableByHour(_ row: [TimeTableRow]) -> [Dictionary<String, [TimeTableRow]>.Element] {
+        var rowDic = [String: [TimeTableRow]]()
+        
+        for r in row {
+            let arrivalTime: String = {
+                if r.arrivetime == "00:00:00" {
+                    return r.lefttime
+                } else {
+                    return r.arrivetime
+                }
+            }()
+            
+            let prefix = String(arrivalTime.prefix(2))
+            var timeTable = rowDic[prefix] ?? []
+            timeTable.append(r)
+            rowDic[prefix] = timeTable
+        }
+        let rowDicArr = rowDic.sorted { $0.key < $1.key }
+        
+        return rowDicArr
     }
     
     private func decodingError(error: Error) {

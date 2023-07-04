@@ -11,6 +11,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel
     @State private var isSave: Bool = false
+    @State private var scrollToIndex: Int = 0
     
     var body: some View {
         NavigationView {
@@ -120,6 +121,7 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
             
             BottomLabelImageButton() {
                 print("전화")
+                scrollToIndex = 5
             }
             .image("phone.fill")
             .text("전화")
@@ -199,12 +201,32 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                 if !viewModel.isRealtimeArrival {
                     selectTimeHour()
                     ScrollView(.vertical) {
-                        ForEach((viewModel.isUp ? viewModel.upSubwayTimeTableInfo?.timeTable.row ?? [] : viewModel.downSubwayTimeTableInfo?.timeTable.row) ?? []) { info in
-                            let vm = SubwayTimeTableInfoViewModel(info: info)
-                            SubwayTimeTableInfoRow(viewModel: vm)
-                                .padding(.vertical, 6)
-                                .frame(width: proxy.size.width)
+                        ScrollViewReader { scrollProxy in
+                            ForEach(0..<viewModel.subwayTimeTableInfo.count, id: \.self) { index in
+                                Section {
+                                    HStack {
+                                        Text("\(viewModel.subwayTimeTableInfo[index].key)시")
+                                        Spacer()
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 3)
+                                    .background(Color(uiColor: .systemGray2))
+                                }
+                                ForEach(viewModel.subwayTimeTableInfo[index].value) { info in
+                                    let vm = SubwayTimeTableInfoViewModel(info: info)
+                                    SubwayTimeTableInfoRow(viewModel: vm)
+                                        .padding(.vertical, 6)
+                                        .frame(width: proxy.size.width)
+                                }
+                            }
+                            .onChange(of: scrollToIndex) { value in
+                                scrollProxy.scrollTo(value, anchor: .top)
+                            }
                         }
+                    }
+                    .safeAreaInset(edge: .top) {
+                        EmptyView()
+                            .frame(height: 6)
                     }
                 } else {
                     ForEach(viewModel.isUp ? viewModel.upSubwayArrivalInfo : viewModel.downSubwayArrivalInfo) { info in
