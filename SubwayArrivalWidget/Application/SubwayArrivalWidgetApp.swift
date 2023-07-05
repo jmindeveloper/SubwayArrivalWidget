@@ -11,7 +11,7 @@ import SwiftUI
 struct SubwayArrivalWidgetApp: App {
     var body: some Scene {
         WindowGroup {
-            StationFavoriteView()
+            StationBookMarkView(viewModel: StationBookMarkViewModel())
         }
     }
 }

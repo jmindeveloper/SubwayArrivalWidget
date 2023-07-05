@@ -10,7 +10,7 @@
 		0E0439132A49ADAA00EA1516 /* SubwayArrivalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */; };
 		0E0439152A49AF0C00EA1516 /* SubwayStationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439142A49AF0C00EA1516 /* SubwayStationInfoView.swift */; };
 		0E0439172A49B60400EA1516 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0439162A49B60400EA1516 /* Color+.swift */; };
-		0E2BD9122A55AB2200AB4A71 /* StationFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2BD9112A55AB2200AB4A71 /* StationFavoriteView.swift */; };
+		0E2BD9122A55AB2200AB4A71 /* StationBookMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2BD9112A55AB2200AB4A71 /* StationBookMarkView.swift */; };
 		0E5B7F212A54255D00E30ACE /* StationBookMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5B7F202A54255D00E30ACE /* StationBookMark.swift */; };
 		0E681F6A2A5181D900907965 /* SubwayTimeTableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E681F692A5181D900907965 /* SubwayTimeTableManager.swift */; };
 		0E681F6C2A51851400907965 /* UPDNLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E681F6B2A51851400907965 /* UPDNLine.swift */; };
@@ -43,7 +43,7 @@
 		0E0439122A49ADAA00EA1516 /* SubwayArrivalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayArrivalView.swift; sourceTree = "<group>"; };
 		0E0439142A49AF0C00EA1516 /* SubwayStationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationInfoView.swift; sourceTree = "<group>"; };
 		0E0439162A49B60400EA1516 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
-		0E2BD9112A55AB2200AB4A71 /* StationFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationFavoriteView.swift; sourceTree = "<group>"; };
+		0E2BD9112A55AB2200AB4A71 /* StationBookMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationBookMarkView.swift; sourceTree = "<group>"; };
 		0E5B7F202A54255D00E30ACE /* StationBookMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationBookMark.swift; sourceTree = "<group>"; };
 		0E681F692A5181D900907965 /* SubwayTimeTableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayTimeTableManager.swift; sourceTree = "<group>"; };
 		0E681F6B2A51851400907965 /* UPDNLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPDNLine.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		0E2BD9102A55AB1600AB4A71 /* FavoriteView */ = {
 			isa = PBXGroup;
 			children = (
-				0E2BD9112A55AB2200AB4A71 /* StationFavoriteView.swift */,
+				0E2BD9112A55AB2200AB4A71 /* StationBookMarkView.swift */,
 			);
 			path = FavoriteView;
 			sourceTree = "<group>";
@@ -329,7 +329,7 @@
 				0E5B7F212A54255D00E30ACE /* StationBookMark.swift in Sources */,
 				0E98F8452A3F19EC0081310B /* SearchSubwayStationViewModel.swift in Sources */,
 				0E98F8382A3EFDE40081310B /* String+.swift in Sources */,
-				0E2BD9122A55AB2200AB4A71 /* StationFavoriteView.swift in Sources */,
+				0E2BD9122A55AB2200AB4A71 /* StationBookMarkView.swift in Sources */,
 				0E9D233E2A4C676500BDEC6A /* SubwayArrivalViewModel.swift in Sources */,
 				0E98F8492A3F23340081310B /* SubwayStation.swift in Sources */,
 				0E681F6C2A51851400907965 /* UPDNLine.swift in Sources */,
