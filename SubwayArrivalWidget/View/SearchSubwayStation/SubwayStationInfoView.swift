@@ -14,6 +14,7 @@ struct SubwayStationInfoView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(subwayName)
+                .foregroundColor(Color(uiColor: .label))
             
             Text(lineNumber.str)
                 .font(.system(size: 13))
