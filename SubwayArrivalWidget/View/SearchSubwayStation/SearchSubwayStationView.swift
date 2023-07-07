@@ -1,5 +1,5 @@
 //
-//  SearchSubwayStation.swift
+//  SearchSubwayStationView.swift
 //  SubwayArrivalWidget
 //
 //  Created by J_Min on 2023/06/18.
@@ -7,24 +7,23 @@
 
 import SwiftUI
 
-struct SearchSubwayStation<ViewModel>: View where ViewModel: SearchSubwayStationViewModelInterface {
+struct SearchSubwayStationView<ViewModel>: View where ViewModel: SearchSubwayStationViewModelInterface {
     
     @ObservedObject var viewModel: ViewModel
     @FocusState private var searchBarFocused: Bool
     @State private var selectedStation: Station?
     
     var body: some View {
-        NavigationView {
-            VStack {
-                TextField("검색", text: $viewModel.searchSubwayStationName)
-                    .textFieldStyle(.roundedBorder)
-                    .focused($searchBarFocused)
-                    .padding()
-                
-                stationList()
-            }
-            .navigationTitle("역정보")
+        VStack {
+            TextField("검색", text: $viewModel.searchSubwayStationName)
+                .textFieldStyle(.roundedBorder)
+                .focused($searchBarFocused)
+                .padding()
+            
+            stationList()
         }
+        .navigationTitle("역정보")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     @ViewBuilder
