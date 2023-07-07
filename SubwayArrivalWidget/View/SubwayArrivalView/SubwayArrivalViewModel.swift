@@ -89,7 +89,7 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     
     init(station: Station) {
         self.station = station
-        self.isStationBookMark = StationBookMark.isStationBookMark(stationCode: station.stationCode)
+        self.isStationBookMark = StationBookMark.isStationBookMark(station: station)
     }
     
     func getSubwayArrivalData() {
@@ -146,7 +146,7 @@ final class SubwayArrivalViewModel: SubwayArrivalViewModelInterface {
     }
     
     func setStationBookMark() {
-        isStationBookMark = StationBookMark.setStationBookMark(stationCode: station.stationCode)
+        isStationBookMark = StationBookMark.setStationBookMark(station: station)
     }
     
     private func groupTimeTableByHour(_ row: [TimeTableRow]) -> [Dictionary<String, [TimeTableRow]>.Element] {

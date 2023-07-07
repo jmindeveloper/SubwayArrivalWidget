@@ -12,27 +12,46 @@ struct StationBookMark {
     
     private init() { }
     
-    static func getStationBookMark() -> [String] {
-        UserDefaults.standard.array(forKey: StationBookMark.key) as? [String] ?? []
+    static func getStationBookMark() -> [Station] {
+        guard let data = UserDefaults.standard.data(forKey: StationBookMark.key) else {
+            return []
+        }
+        
+        do {
+            return try JSONDecoder().decode([Station].self, from: data)
+        } catch {
+            return []
+        }
     }
     
     @discardableResult
-    static func setStationBookMark(stationCode: String) -> Bool {
-        var stations = StationBookMark.getStationBookMark()
+    static func setStationBookMark(station: Station) -> Bool {
+        var currentBookMarkStations = StationBookMark.getStationBookMark()
         var isAppend: Bool = false
-        if stations.contains(stationCode) {
-            stations.removeAll { $0 == stationCode }
+        
+        if currentBookMarkStations.contains(where: {
+            $0.stationCode == station.stationCode
+        }) {
+            currentBookMarkStations.removeAll { $0.stationCode == station.stationCode }
         } else {
-            stations.append(stationCode)
+            currentBookMarkStations.append(station)
             isAppend = true
         }
         
-        UserDefaults.standard.set(stations, forKey: StationBookMark.key)
-        print("is this Station bookMark --> ", isStationBookMark(stationCode: stationCode))
+        do {
+            let data = try JSONEncoder().encode(currentBookMarkStations)
+            
+            UserDefaults.standard.set(data, forKey: StationBookMark.key)
+        } catch {
+            return false
+        }
+        
         return isAppend
     }
     
-    static func isStationBookMark(stationCode: String) -> Bool {
-        getStationBookMark().contains(stationCode)
+    static func isStationBookMark(station: Station) -> Bool {
+        getStationBookMark().contains {
+            $0.stationCode == station.stationCode
+        }
     }
 }
