@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 struct StationBookMark {
     static let key = "StationBookMark"
+    static let chaingeStationBookMarkListPublisher = PassthroughSubject<Void, Never>()
     
     private init() { }
     
@@ -40,8 +42,8 @@ struct StationBookMark {
         
         do {
             let data = try JSONEncoder().encode(currentBookMarkStations)
-            
             UserDefaults.standard.set(data, forKey: StationBookMark.key)
+            StationBookMark.chaingeStationBookMarkListPublisher.send()
         } catch {
             return false
         }

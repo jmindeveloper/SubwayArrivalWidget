@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct StationBookMarkView<ViewModel>: View where ViewModel: StationBookMarkViewModelInterface {
     @ObservedObject var viewModel: ViewModel
@@ -60,6 +61,19 @@ protocol StationBookMarkViewModelInterface: ObservableObject {
 final class StationBookMarkViewModel: StationBookMarkViewModelInterface {
     @Published var lineNumbers: [String] = []
     @Published var favoriteStationList: [String : [Station]] = [:]
+    
+    private var subscriptions = Set<AnyCancellable>()
+    
+    init() {
+        binding()
+    }
+    
+    private func binding() {
+        StationBookMark.chaingeStationBookMarkListPublisher
+            .sink { [weak self] in
+                self?.getFavoriteStations()
+            }.store(in: &subscriptions)
+    }
     
     func getFavoriteStations() {
         let bookMarks = StationBookMark.getStationBookMark()
