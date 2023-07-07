@@ -45,7 +45,7 @@ struct StationBookMarkView<ViewModel>: View where ViewModel: StationBookMarkView
             }
         }
         .onAppear {
-            
+            viewModel.getFavoriteStations()
         }
     }
 }
@@ -58,12 +58,12 @@ protocol StationBookMarkViewModelInterface: ObservableObject {
 }
 
 final class StationBookMarkViewModel: StationBookMarkViewModelInterface {
-    var lineNumbers: [String] = []
-    var favoriteStationList: [String : [Station]] = [:]
+    @Published var lineNumbers: [String] = []
+    @Published var favoriteStationList: [String : [Station]] = [:]
     
     func getFavoriteStations() {
         let bookMarks = StationBookMark.getStationBookMark()
-//        favoriteStationList = splitToLineNum(stations: bookMarks)
+        favoriteStationList = splitToLineNum(stations: bookMarks)
     }
     
     private func splitToLineNum(stations: [Station]) -> [String: [Station]] {
