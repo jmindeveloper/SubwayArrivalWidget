@@ -10,6 +10,7 @@ import SwiftUI
 struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewModelInterface {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel
+    @State private var selectHour: String = ""
     
     var body: some View {
         NavigationView {
@@ -198,12 +199,35 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                 if !viewModel.isRealtimeArrival {
                     selectTimeHour()
                     ScrollView(.vertical) {
-                        ForEach((viewModel.isUp ? viewModel.upSubwayTimeTableInfo?.timeTable.row ?? [] : viewModel.downSubwayTimeTableInfo?.timeTable.row) ?? []) { info in
-                            let vm = SubwayTimeTableInfoViewModel(info: info)
-                            SubwayTimeTableInfoRow(viewModel: vm)
-                                .padding(.vertical, 6)
-                                .frame(width: proxy.size.width)
+                        ScrollViewReader { scrollProxy in
+                            ForEach(0..<viewModel.subwayTimeTableInfo.count, id: \.self) { index in
+                                Section {
+                                    HStack {
+                                        Text("\(viewModel.subwayTimeTableInfo[index].key)시")
+                                            .id(viewModel.subwayTimeTableInfo[index].key)
+                                        Spacer()
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 3)
+                                    .background(Color(uiColor: .systemGray2))
+                                }
+                                ForEach(viewModel.subwayTimeTableInfo[index].value) { info in
+                                    let vm = SubwayTimeTableInfoViewModel(info: info)
+                                    SubwayTimeTableInfoRow(viewModel: vm)
+                                        .padding(.vertical, 6)
+                                        .frame(width: proxy.size.width)
+                                }
+                            }
+                            .onChange(of: selectHour) { value in
+                                withAnimation {
+                                    scrollProxy.scrollTo(value, anchor: .top)
+                                }
+                            }
                         }
+                    }
+                    .safeAreaInset(edge: .top) {
+                        EmptyView()
+                            .frame(height: 6)
                     }
                 } else {
                     ForEach(viewModel.isUp ? viewModel.upSubwayArrivalInfo : viewModel.downSubwayArrivalInfo) { info in
@@ -226,6 +250,9 @@ struct SubwayArrivalView<ViewModel>: View where ViewModel: SubwayArrivalViewMode
                         .background {
                             Capsule()
                                 .fill(Color(uiColor: .red))
+                        }
+                        .onTapGesture {
+                            selectHour = String(format: "%02d", index)
                         }
                 }
             }
